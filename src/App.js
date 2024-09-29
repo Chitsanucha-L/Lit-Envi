@@ -131,7 +131,9 @@ function App() {
             {Array.from({ length: 3 }, (_, index) => (
               <div key={index} className="inline-block">
                 {index < hp ? (
-                  <Heart fill="red" color="red" />
+                  <div>
+                    <Heart fill="red" color="red" />
+                  </div>
                 ) : (
                   <HeartCrack color="#4f4f4f" />
                 )}
@@ -148,7 +150,7 @@ function App() {
               {questions[currentQuestionIndex].choices.map((choice, index) => (
                 <button
                   key={index}
-                  className="block w-full shadow-sm text-left p-2.5 my-3 rounded-lg bg-gray-200 hover:bg-blue-400"
+                  className="block w-full shadow-md text-left p-3 my-4 rounded-lg bg-gray-200 hover:bg-blue-400"
                   onClick={() => handleAnswerSelect(choice)}
                 >
                   {choice}
@@ -172,6 +174,7 @@ function App() {
                 setStep("home");
                 setCurrentQuestionIndex(0);
                 setUserName("");
+                setHp(3);
               }}
             >
               Restart Test
@@ -193,7 +196,7 @@ function App() {
                 setStep("home");
                 setCurrentQuestionIndex(0);
                 setUserName("");
-                setHp(3); // Reset HP when restarting
+                setHp(3);
               }}
             >
               Restart Test
