@@ -35,16 +35,18 @@ function App() {
     <div className="noto-sans min-h-screen bg-gray-100 flex flex-col justify-center items-center text-gray-900">
       <div className="w-full max-w-xl p-6 bg-white rounded-lg shadow-md">
         {step === "home" ? (
-          <div className="text-center">
-            <h1 className="text-3xl font-bold mb-6 text-black">
-              Welcome to the Test
+          <div className="text-center px-4 py-1">
+            <h1 className="text-3xl font-bold mb-12 py-2 text-black">
+              กรุงเทพฯ เมืองใต้น้ำ และวิถีชีวิต
             </h1>
-            <button
-              className="px-6 py-2 bg-blue-500 text-white rounded-lg text-lg"
-              onClick={() => setStep("rules")}
-            >
-              Start Test
-            </button>
+            <div className="flex justify-end">
+              <button
+                className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg text-lg"
+                onClick={() => setStep("rules")}
+              >
+                เข้าสู่เนื้อเรื่อง
+              </button>
+            </div>
           </div>
         ) : step === "rules" ? (
           <div className="text-center px-2">
@@ -60,7 +62,7 @@ function App() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-2 bg-blue-500 text-white rounded-lg text-lg"
+                className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg text-lg"
                 onClick={() => setStep("name")}
               >
                 ต่อไป
@@ -86,7 +88,7 @@ function App() {
               />
               <button
                 type="submit"
-                className="px-6 py-2 bg-blue-500 text-white rounded-lg text-lg"
+                className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg text-lg"
               >
                 เริ่มต้นเดินทาง
               </button>
@@ -95,7 +97,7 @@ function App() {
         ) : step === "content" ? (
           <div className="text-center px-2">
             <h1 className="text-2xl font-bold mb-6 text-black">
-              สวัสดี {userName}!
+              สวัสดีคุณ {userName}!
             </h1>
             <p className="mb-6 text-lg text-start">
               <span className="font-bold text-black">เนื้อเรื่อง:</span>{" "}
@@ -108,10 +110,10 @@ function App() {
             </p>
             <div className="flex justify-end">
               <button
-                className="px-6 py-2 bg-blue-500 text-white rounded-lg text-lg"
+                className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg text-lg"
                 onClick={() => setStep("start")}
               >
-                เริ่มเลย!
+                มาเริ่มกันเลย!
               </button>
             </div>
           </div>
@@ -146,7 +148,7 @@ function App() {
               Thank you for completing the test, {userName}!
             </p>
             <button
-              className="px-6 py-2 bg-blue-500 text-white rounded-lg mt-4"
+              className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg mt-4"
               onClick={() => {
                 setStep("home");
                 setCurrentQuestionIndex(0);
