@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import questions from "./data"; // Importing questions from the data file
+import { Heart } from 'lucide-react';
 
 function App() {
   const [step, setStep] = useState("home"); // Changed to 'step' for clarity
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userName, setUserName] = useState("");
-
+  const [hp, setHp] = useState(3);
+ 
   const handleNameSubmit = (event) => {
     event.preventDefault();
     setStep("content"); // Move to the content page after name submission
@@ -15,12 +17,18 @@ function App() {
     // You can implement your logic here to handle the answer
     const correctAnswers = questions[currentQuestionIndex].answer;
     if (correctAnswers.includes(choice)) {
-      // Handle correct answer
       console.log("Correct!");
     } else {
-      // Handle incorrect answer
-      console.log("Incorrect!");
+        console.log("Incorrect!");
+        setHp((prevHp) => {
+          if (prevHp === 1) {
+            setStep("fail"); // Set to "fail" if HP reaches 1
+            return 0; // Set HP to 0
+          }
+          return prevHp - 1; // Decrease HP
+        });
     }
+  
 
     // Move to the next question after answering
     if (currentQuestionIndex < questions.length - 1) {
@@ -119,6 +127,11 @@ function App() {
           </div>
         ) : step === "start" && currentQuestionIndex < questions.length ? (
           <div className="px-1 py-1">
+            <div className="flex justify-end space-x-0.5 mb-2">
+              {Array.from({ length: 3 }, (_, index) => (
+                  <Heart key={index} fill={index < hp ? "red" : "white"} color={index < hp ? "red" : "#4f4f4f"} />
+              ))}
+            </div>
             <p className="mb-9 text-lg text-start font-semibold text-black">
               <span className="mr-1">
                 {currentQuestionIndex + 1}.
@@ -153,6 +166,28 @@ function App() {
                 setStep("home");
                 setCurrentQuestionIndex(0);
                 setUserName("");
+              }}
+            >
+              Restart Test
+            </button>
+          </div>
+        ) : step === "fail" ? (
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-6">Test Failed!</h1>
+            <p className="mt-4 text-lg text-gray-700">
+              You have run out of hearts.
+            </p>
+            <h2 className="mt-4 text-xl font-semibold">Summary:</h2>
+            <p className="mt-2 text-lg">
+              Thank you for playing, {userName}!
+            </p>
+            <button
+              className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg mt-4"
+              onClick={() => {
+                setStep("home");
+                setCurrentQuestionIndex(0);
+                setUserName("");
+                setHp(3); // Reset HP when restarting
               }}
             >
               Restart Test
