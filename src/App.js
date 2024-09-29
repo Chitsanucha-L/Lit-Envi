@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import questions from "./data"; // Importing questions from the data file
-import { Heart } from 'lucide-react';
+import { Heart, HeartCrack } from 'lucide-react';
 
 function App() {
   const [step, setStep] = useState("home"); // Changed to 'step' for clarity
@@ -128,9 +128,15 @@ function App() {
         ) : step === "start" && currentQuestionIndex < questions.length ? (
           <div className="px-1 py-1">
             <div className="flex justify-end space-x-0.5 mb-2">
-              {Array.from({ length: 3 }, (_, index) => (
-                  <Heart key={index} fill={index < hp ? "red" : "white"} color={index < hp ? "red" : "#4f4f4f"} />
-              ))}
+            {Array.from({ length: 3 }, (_, index) => (
+              <div key={index} className="inline-block">
+                {index < hp ? (
+                  <Heart fill="red" color="red" />
+                ) : (
+                  <HeartCrack color="#4f4f4f" />
+                )}
+              </div>
+            ))}
             </div>
             <p className="mb-9 text-lg text-start font-semibold text-black">
               <span className="mr-1">
