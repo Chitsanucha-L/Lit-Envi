@@ -150,7 +150,7 @@ function App() {
               {questions[currentQuestionIndex].choices.map((choice, index) => (
                 <button
                   key={index}
-                  className="block w-full shadow-md text-left p-3 my-4 rounded-lg bg-gray-200 hover:bg-blue-400 transition ease-in-out delay-75 hover:scale-105"
+                  className="block w-full shadow-md text-left p-3 my-4 rounded-lg bg-gray-200 hover:bg-blue-400"
                   onClick={() => handleAnswerSelect(choice)}
                 >
                   {choice}
