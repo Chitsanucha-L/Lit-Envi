@@ -49,7 +49,7 @@ function App() {
             </h1>
             <div className="flex justify-end">
               <button
-                className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg text-lg"
+                className="px-6 py-2 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-lg"
                 onClick={() => setStep("rules")}
               >
                 เข้าสู่เนื้อเรื่อง
@@ -70,7 +70,7 @@ function App() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg text-lg"
+                className="px-6 py-2 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-lg"
                 onClick={() => setStep("name")}
               >
                 ต่อไป
@@ -96,7 +96,7 @@ function App() {
               />
               <button
                 type="submit"
-                className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg text-lg"
+                className="px-6 py-2 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-lg"
               >
                 เริ่มต้นเดินทาง
               </button>
@@ -118,7 +118,7 @@ function App() {
             </p>
             <div className="flex justify-end">
               <button
-                className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg text-lg"
+                className="px-6 py-2 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-lg"
                 onClick={() => setStep("start")}
               >
                 มาเริ่มกันเลย!
@@ -150,7 +150,7 @@ function App() {
               {questions[currentQuestionIndex].choices.map((choice, index) => (
                 <button
                   key={index}
-                  className="block w-full shadow-md text-left p-3 my-4 rounded-lg bg-gray-200 hover:bg-blue-400"
+                  className="block w-full shadow-md text-left p-3 my-4 rounded-lg bg-gray-200 hover:bg-blue-400 transition ease-in-out delay-75 hover:scale-105"
                   onClick={() => handleAnswerSelect(choice)}
                 >
                   {choice}
