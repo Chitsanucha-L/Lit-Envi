@@ -3,6 +3,11 @@ import questions from "./data"; // Importing questions from the data file
 import { Heart, HeartCrack } from "lucide-react";
 import { CSSTransition } from "react-transition-group";
 import "./App.css";
+import axios from "axios";
+
+const apiClient = axios.create({
+  baseURL: "https://gened-project.vercel.app",
+});
 
 function App() {
   const [step, setStep] = useState("home"); // Changed to 'step' for clarity
@@ -20,7 +25,7 @@ function App() {
       }
     };
     playAudio();
-  }, []);  
+  }, []);
 
   const handleNameSubmit = (event) => {
     event.preventDefault();
@@ -30,9 +35,14 @@ function App() {
     }, 510);
   };
 
-  const handleAnswerSelect = (choice) => {
+  const handleAnswerSelect = (choice, index) => {
     // You can implement your logic here to handle the answer
     const correctAnswers = questions[currentQuestionIndex].answer;
+    apiClient
+      .put(`/number/${currentQuestionIndex + 1}/choice${index + 1}`)
+      .catch((error) => {
+        console.error("Failed to send choice to the server", error);
+      });
     if (correctAnswers.includes(choice)) {
       console.log("Correct!");
     } else {
@@ -66,7 +76,7 @@ function App() {
         <source src="/music.mp3" type="audio/mp3" />
         Your browser does not support the audio tag.
       </audio>
-      <div className="w-full h-full bg-white rounded-lg shadow-md">
+      <div className="flex justify-center items-center w-full h-full">
         <CSSTransition
           in={step === "home"}
           timeout={500}
@@ -87,7 +97,7 @@ function App() {
             </video>
 
             {/* Overlay content */}
-            <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4 py-1 bg-black bg-opacity-50">
+            <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4 py-1 bg-black bg-opacity-25">
               <h1 className="lg:text-3xl md:text-2xl text-xl font-bold lg:mb-12 md:mb-9 mb-6 py-2 text-white">
                 กรุงเทพฯ เมืองใต้น้ำ และวิถีชีวิต
               </h1>
@@ -112,8 +122,10 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-6">
-            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold lg:mb-4 md:mb-3 mb-2 py-2 text-black">กติกา</h1>
+          <div className="text-center p-6 max-w-2xl w-full bg-white rounded-lg shadow-md">
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold lg:mb-4 md:mb-3 mb-2 py-2 text-black">
+              กติกา
+            </h1>
             <p className="lg:mb-6 md:mb-5 mb-4 lg:text-lg md:text-md text-sm text-start">
               ผู้เล่นมีหัวใจอยู่ 3 ดวง หากตอบผิดจะโดนหักหัวใจ 1 ดวงต่อครั้ง
               ซึ่งตอบผิดเกิน 3 ครั้ง (หัวใจหมด)
@@ -145,13 +157,13 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-6">
+          <div className="text-center p-6 max-w-2xl w-full bg-white rounded-lg shadow-md">
             <h1 className="lg:text-3xl md:text-2xl text-xl font-bold py-1 lg:mb-10 md:mb-8 mb-6 text-black">
               ใส่ชื่อนักเดินทาง
             </h1>
             <form
               onSubmit={handleNameSubmit}
-              className="flex flex-col space-y-2 mb-4 px-4"
+              className="relative flex flex-col space-y-2 mb-4 px-4"
             >
               <input
                 type="text"
@@ -177,7 +189,7 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-6">
+          <div className="text-center p-6 max-w-2xl w-full bg-white rounded-lg shadow-md">
             <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-6 text-black">
               สวัสดีคุณ {userName}!
             </h1>
@@ -212,11 +224,22 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="p-6">
+          <div className="p-6 max-w-2xl w-full bg-white rounded-lg shadow-md">
             <div className="flex justify-end space-x-0.5 lg:mb-[8px] md:mb-[6px] mb-[4px]">
               {Array.from({ length: 3 }, (_, index) => (
                 <div key={index} className="inline-block">
-                  {index < hp ? <Heart fill="red" color="red" className="lg:w-[24px] md:w-[22px] w-[20px]"/> : <HeartCrack color="#4f4f4f" className="lg:w-[24px] md:w-[22px] w-[20px]"/>}
+                  {index < hp ? (
+                    <Heart
+                      fill="red"
+                      color="red"
+                      className="lg:w-[24px] md:w-[22px] w-[20px]"
+                    />
+                  ) : (
+                    <HeartCrack
+                      color="#4f4f4f"
+                      className="lg:w-[24px] md:w-[22px] w-[20px]"
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -232,7 +255,7 @@ function App() {
                 <button
                   key={index}
                   className="block w-full shadow-md text-left lg:p-[12px] md:p-[11px] p-[10px] lg:my-[16px] md:my-[15px] my-[14px] rounded-lg bg-gray-200 hover:bg-blue-400 lg:text-lg md:text-md text-sm"
-                  onClick={() => handleAnswerSelect(choice)}
+                  onClick={() => handleAnswerSelect(choice, index)}
                 >
                   {choice}
                 </button>
@@ -247,12 +270,16 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-6">
-            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-6">Test Completed!</h1>
+          <div className="text-center p-6 max-w-2xl w-full bg-white rounded-lg shadow-md">
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-6">
+              Test Completed!
+            </h1>
             <p className="mt-4 lg:text-lg md:text-md text-sm text-gray-700">
               You've answered all the questions.
             </p>
-            <h2 className="mt-4 lg:text-3xl md:text-2xl text-xl font-semibold">Summary:</h2>
+            <h2 className="mt-4 lg:text-3xl md:text-2xl text-xl font-semibold">
+              Summary:
+            </h2>
             <p className="mt-2 lg:text-lg md:text-md text-sm">
               Thank you for completing the test, {userName}!
             </p>
@@ -279,13 +306,19 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-6">
-            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-6">Test Failed!</h1>
+          <div className="text-center p-6 max-w-2xl w-full bg-white rounded-lg shadow-md">
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-6">
+              Test Failed!
+            </h1>
             <p className="mt-4 lg:text-lg md:text-md text-sm text-gray-700">
               You have run out of hearts.
             </p>
-            <h2 className="mt-4 lg:text-3xl md:text-2xl text-xl font-semibold">Summary:</h2>
-            <p className="mt-2 lg:text-lg md:text-md text-sm">Thank you for playing, {userName}!</p>
+            <h2 className="mt-4 lg:text-3xl md:text-2xl text-xl font-semibold">
+              Summary:
+            </h2>
+            <p className="mt-2 lg:text-lg md:text-md text-sm">
+              Thank you for playing, {userName}!
+            </p>
             <button
               className="lg:px-6 lg:py-2 md:px-[21px] md:py-[7px] px-4 py-1.5 shadow-md bg-blue-500 text-white rounded-lg mt-4 lg:text-lg md:text-md text-sm"
               onClick={() => {
