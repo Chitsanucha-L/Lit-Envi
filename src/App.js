@@ -18,7 +18,7 @@ function App() {
 
   const playAudio = async () => {
     try {
-      audioRef.current.volume = 0.5
+      audioRef.current.volume = 0.15
       await audioRef.current.play();
     } catch (error) {
       console.error("Audio playback failed", error);
