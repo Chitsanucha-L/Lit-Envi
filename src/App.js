@@ -10,15 +10,21 @@ const apiClient = axios.create({
 });
 
 function App() {
-  const [step, setStep] = useState("home");
+  const [step, setStep] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userName, setUserName] = useState("");
   const [hp, setHp] = useState(3);
   const audioRef = useRef(null);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setStep("home");
+    }, 510);
+  }, []);
+
   const playAudio = async () => {
     try {
-      audioRef.current.volume = 0.40
+      audioRef.current.volume = 0.35
       await audioRef.current.play();
     } catch (error) {
       console.error("Audio playback failed", error);
@@ -88,17 +94,11 @@ function App() {
           unmountOnExit
         >
           <div className="relative w-full h-screen">
-            {/* Video Background */}
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
+            <img
               className="absolute inset-0 w-full h-full 2xl:object-cover z-0"
-            >
-              <source src="home.mp4" type="video/mp4"/>
-              Your browser does not support the video tag.
-            </video>
+              src="home.png"
+              alt="Background"
+            />
 
             {/* Overlay content */}
             <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4 py-1 bg-black bg-opacity-25">
