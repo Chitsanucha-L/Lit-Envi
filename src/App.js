@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import questions from "./data"; // Importing questions from the data file
 import { Heart, HeartCrack } from "lucide-react";
 import { CSSTransition } from "react-transition-group";
@@ -10,7 +10,7 @@ const apiClient = axios.create({
 });
 
 function App() {
-  const [step, setStep] = useState("home"); // Changed to 'step' for clarity
+  const [step, setStep] = useState("home");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userName, setUserName] = useState("");
   const [hp, setHp] = useState(3);
@@ -19,6 +19,7 @@ function App() {
   useEffect(() => {
     const playAudio = async () => {
       try {
+        audioRef.current.volume = 0.5
         await audioRef.current.play();
       } catch (error) {
         console.error("Audio playback failed", error);
@@ -26,6 +27,7 @@ function App() {
     };
     playAudio();
   }, []);
+  
 
   const handleNameSubmit = (event) => {
     event.preventDefault();
@@ -72,8 +74,8 @@ function App() {
 
   return (
     <div className="noto-sans min-h-screen bg-gray-100 flex flex-col justify-center items-center text-gray-900">
-      <audio id="background-music" ref={audioRef} loop>
-        <source src="/music.mp3" type="audio/mp3" />
+      <audio id="background-music" ref={audioRef} loop autoPlay playsInline>
+        <source src="music.mp3" type="audio/mp3" />
         Your browser does not support the audio tag.
       </audio>
       <div className="flex justify-center items-center w-full h-full">
@@ -90,9 +92,10 @@ function App() {
               autoPlay
               muted
               loop
+              playsInline
               className="absolute inset-0 w-full h-full 2xl:object-cover z-0"
             >
-              <source src="/home.mp4" type="video/mp4" />
+              <source src="home.mp4" type="video/mp4"/>
               Your browser does not support the video tag.
             </video>
 
