@@ -12,8 +12,15 @@ function App() {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    audioRef.current.play();
-  },);
+    const playAudio = async () => {
+      try {
+        await audioRef.current.play();
+      } catch (error) {
+        console.error("Audio playback failed", error);
+      }
+    };
+    playAudio();
+  }, []);  
 
   const handleNameSubmit = (event) => {
     event.preventDefault();
@@ -73,7 +80,7 @@ function App() {
               autoPlay
               muted
               loop
-              className="absolute inset-0 w-full h-full object-cover z-0"
+              className="absolute inset-0 w-full h-full 2xl:object-cover z-0"
             >
               <source src="/home.mp4" type="video/mp4" />
               Your browser does not support the video tag.
@@ -81,11 +88,11 @@ function App() {
 
             {/* Overlay content */}
             <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4 py-1 bg-black bg-opacity-50">
-              <h1 className="text-3xl font-bold mb-12 py-2 text-white">
+              <h1 className="lg:text-3xl md:text-2xl text-xl font-bold lg:mb-12 md:mb-9 mb-6 py-2 text-white">
                 กรุงเทพฯ เมืองใต้น้ำ และวิถีชีวิต
               </h1>
               <button
-                className="px-6 py-2 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-lg"
+                className="lg:px-6 lg:py-2 md:px-[21px] md:py-[7px] px-4 py-1.5 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg lg:text-lg md:text-md text-sm"
                 onClick={() => {
                   setStep("null");
                   setTimeout(() => {
@@ -106,8 +113,8 @@ function App() {
           unmountOnExit
         >
           <div className="text-center p-6">
-            <h1 className="text-3xl font-bold mb-4 py-2 text-black">กติกา</h1>
-            <p className="mb-6 text-lg text-start">
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold lg:mb-4 md:mb-3 mb-2 py-2 text-black">กติกา</h1>
+            <p className="lg:mb-6 md:mb-5 mb-4 lg:text-lg md:text-md text-sm text-start">
               ผู้เล่นมีหัวใจอยู่ 3 ดวง หากตอบผิดจะโดนหักหัวใจ 1 ดวงต่อครั้ง
               ซึ่งตอบผิดเกิน 3 ครั้ง (หัวใจหมด)
               ผู้เล่นจะเห็นจุดจบของการสำรวจและได้รับข้อมูลเพิ่มเติมเกี่ยวกับสถานการณ์น้ำท่วมในกรุงเทพฯ
@@ -118,7 +125,7 @@ function App() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-2 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-lg"
+                className="lg:px-6 lg:py-2 md:px-[21px] md:py-[7px] px-4 py-1.5 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg lg:text-lg md:text-md text-sm"
                 onClick={() => {
                   setStep("null");
                   setTimeout(() => {
@@ -139,7 +146,7 @@ function App() {
           unmountOnExit
         >
           <div className="text-center p-6">
-            <h1 className="text-3xl font-bold py-1 mb-10 text-black">
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold py-1 lg:mb-10 md:mb-8 mb-6 text-black">
               ใส่ชื่อนักเดินทาง
             </h1>
             <form
@@ -151,12 +158,12 @@ function App() {
                 placeholder="ชื่อนักเดินทาง"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
-                className="p-2 border border-gray-300 rounded mb-4"
+                className="lg:p-2 p-1.5 border border-gray-300 rounded lg:mb-4 mb-3 lg:text-lg md:text-md text-sm"
                 required
               />
               <button
                 type="submit"
-                className="px-6 py-2 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-lg"
+                className="lg:px-6 lg:py-2 px-[21px] py-[7px] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg lg:text-lg md:text-md text-sm"
               >
                 เริ่มต้นเดินทาง
               </button>
@@ -171,10 +178,10 @@ function App() {
           unmountOnExit
         >
           <div className="text-center p-6">
-            <h1 className="text-2xl font-bold mb-6 text-black">
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-6 text-black">
               สวัสดีคุณ {userName}!
             </h1>
-            <p className="mb-6 text-lg text-start">
+            <p className="mb-6 lg:text-lg md:text-md text-sm text-start">
               <span className="font-bold text-black">เนื้อเรื่อง:</span>{" "}
               ในอนาคตกรุงเทพฯ เผชิญกับการท่วมครั้งใหญ่
               ทุกพื้นที่ต่ำถูกน้ำท่วมล้นจนกลายเป็นทะเลสาบขนาดใหญ่
@@ -185,7 +192,7 @@ function App() {
             </p>
             <div className="flex justify-end">
               <button
-                className="px-6 py-2 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-lg"
+                className="lg:px-6 lg:py-2 md:px-[21px] md:py-[7px] px-4 py-1.5 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg lg:text-lg md:text-md text-sm"
                 onClick={() => {
                   setStep("null");
                   setTimeout(() => {
@@ -206,20 +213,14 @@ function App() {
           unmountOnExit
         >
           <div className="p-6">
-            <div className="flex justify-end space-x-0.5 mb-2">
+            <div className="flex justify-end space-x-0.5 lg:mb-[8px] md:mb-[6px] mb-[4px]">
               {Array.from({ length: 3 }, (_, index) => (
                 <div key={index} className="inline-block">
-                  {index < hp ? (
-                    <div>
-                      <Heart fill="red" color="red" />
-                    </div>
-                  ) : (
-                    <HeartCrack color="#4f4f4f" />
-                  )}
+                  {index < hp ? <Heart fill="red" color="red" className="lg:w-[24px] md:w-[22px] w-[20px]"/> : <HeartCrack color="#4f4f4f" className="lg:w-[24px] md:w-[22px] w-[20px]"/>}
                 </div>
               ))}
             </div>
-            <p className="mb-9 text-lg text-start font-semibold text-black">
+            <p className="lg:mb-9 md:mb-8 mb-7 lg:text-lg md:text-md text-sm text-start font-semibold text-black">
               <span className="mr-1">{currentQuestionIndex + 1}.</span>
               {questions[currentQuestionIndex].question.replaceAll(
                 "(ชื่อผู้เล่น)",
@@ -230,7 +231,7 @@ function App() {
               {questions[currentQuestionIndex].choices.map((choice, index) => (
                 <button
                   key={index}
-                  className="block w-full shadow-md text-left p-3 my-4 rounded-lg bg-gray-200 hover:bg-blue-400"
+                  className="block w-full shadow-md text-left lg:p-[12px] md:p-[11px] p-[10px] lg:my-[16px] md:my-[15px] my-[14px] rounded-lg bg-gray-200 hover:bg-blue-400 lg:text-lg md:text-md text-sm"
                   onClick={() => handleAnswerSelect(choice)}
                 >
                   {choice}
@@ -247,16 +248,16 @@ function App() {
           unmountOnExit
         >
           <div className="text-center p-6">
-            <h1 className="text-2xl font-bold mb-6">Test Completed!</h1>
-            <p className="mt-4 text-lg text-gray-700">
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-6">Test Completed!</h1>
+            <p className="mt-4 lg:text-lg md:text-md text-sm text-gray-700">
               You've answered all the questions.
             </p>
-            <h2 className="mt-4 text-xl font-semibold">Summary:</h2>
-            <p className="mt-2 text-lg">
+            <h2 className="mt-4 lg:text-3xl md:text-2xl text-xl font-semibold">Summary:</h2>
+            <p className="mt-2 lg:text-lg md:text-md text-sm">
               Thank you for completing the test, {userName}!
             </p>
             <button
-              className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg mt-4"
+              className="lg:px-6 lg:py-2 md:px-[21px] md:py-[7px] px-4 py-1.5 shadow-md bg-blue-500 text-white rounded-lg mt-4 lg:text-lg md:text-md text-sm"
               onClick={() => {
                 setStep("null");
                 setTimeout(() => {
@@ -279,14 +280,14 @@ function App() {
           unmountOnExit
         >
           <div className="text-center p-6">
-            <h1 className="text-2xl font-bold mb-6">Test Failed!</h1>
-            <p className="mt-4 text-lg text-gray-700">
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-6">Test Failed!</h1>
+            <p className="mt-4 lg:text-lg md:text-md text-sm text-gray-700">
               You have run out of hearts.
             </p>
-            <h2 className="mt-4 text-xl font-semibold">Summary:</h2>
-            <p className="mt-2 text-lg">Thank you for playing, {userName}!</p>
+            <h2 className="mt-4 lg:text-3xl md:text-2xl text-xl font-semibold">Summary:</h2>
+            <p className="mt-2 lg:text-lg md:text-md text-sm">Thank you for playing, {userName}!</p>
             <button
-              className="px-6 py-2 shadow-md bg-blue-500 text-white rounded-lg mt-4"
+              className="lg:px-6 lg:py-2 md:px-[21px] md:py-[7px] px-4 py-1.5 shadow-md bg-blue-500 text-white rounded-lg mt-4 lg:text-lg md:text-md text-sm"
               onClick={() => {
                 setStep("null");
                 setTimeout(() => {
