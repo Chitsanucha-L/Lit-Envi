@@ -16,15 +16,16 @@ function App() {
   const [hp, setHp] = useState(3);
   const audioRef = useRef(null);
 
+  const playAudio = async () => {
+    try {
+      audioRef.current.volume = 0.5
+      await audioRef.current.play();
+    } catch (error) {
+      console.error("Audio playback failed", error);
+    }
+  };
+
   useEffect(() => {
-    const playAudio = async () => {
-      try {
-        audioRef.current.volume = 0.5
-        await audioRef.current.play();
-      } catch (error) {
-        console.error("Audio playback failed", error);
-      }
-    };
     playAudio();
   }, []);
   
@@ -107,6 +108,7 @@ function App() {
               <button
                 className="lg:px-6 lg:py-2 md:px-[21px] md:py-[7px] px-4 py-1.5 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg lg:text-lg md:text-md text-sm"
                 onClick={() => {
+                  playAudio();
                   setStep("null");
                   setTimeout(() => {
                     setStep("rules");
