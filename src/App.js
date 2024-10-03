@@ -79,7 +79,7 @@ function App() {
   };
 
   return (
-    <div className="noto-sans bg-gray-100 flex justify-center items-center w-screen h-screen max-h-screen p-0 m-0 aspect-[16/9]">
+    <div className="noto-sans bg-black flex justify-center items-center w-screen h-screen max-h-screen p-0 m-0 aspect-[16/9]">
       <audio id="audio" loop autoPlay ref={audioRef}>
         <source src="/music.mp3" type="audio/mp3" />
       </audio>
