@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import questions from "./data"; // Importing questions from the data file
 import { Heart, HeartCrack } from "lucide-react";
 import { CSSTransition } from "react-transition-group";
@@ -14,16 +14,16 @@ function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userName, setUserName] = useState("");
   const [hp, setHp] = useState(3);
-  /*const audioRef = useRef(null);*/
+  const audioRef = useRef(null);
 
-  /*const playAudio = async () => {
+  const playAudio = async () => {
     try {
       audioRef.current.volume = 0.35
       await audioRef.current.play();
     } catch (error) {
       console.error("Audio playback failed", error);
     }
-  };*/
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -31,10 +31,10 @@ function App() {
     }, 510);
   }, []);
 
-  /*useEffect(() => {
-    if (step === "home" || step === "rules")
+  useEffect(() => {
+    if ((step === "home" || step === "rules" ) && audioRef)
       playAudio();
-  }, [step]);*/
+  }, [step, audioRef]);
   
 
   const handleNameSubmit = (event) => {
@@ -82,6 +82,9 @@ function App() {
 
   return (
     <div className="noto-sans bg-gray-100 flex justify-center items-center w-screen h-screen max-h-screen p-0 m-0 aspect-[16/9]">
+      <audio id="audio" loop autoPlay ref={audioRef}> 
+        <source src="/music.mp4" type="audio/mp4"/>
+      </audio>
       <div className="flex justify-center items-center w-full h-full">
         <CSSTransition
           in={step === "home"}
@@ -105,7 +108,7 @@ function App() {
               <button
                 className="lg:px-6 lg:py-2 md:px-[21px] md:py-[7px] px-4 py-1.5 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg lg:text-lg md:text-md text-sm"
                 onClick={() => {
-                  /*playAudio();*/
+                  playAudio();
                   setStep("null");
                   setTimeout(() => {
                     setStep("rules");
