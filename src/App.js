@@ -18,7 +18,7 @@ function App() {
 
   const playAudio = async () => {
     try {
-      audioRef.current.volume = 0.35
+      audioRef.current.volume = 0.3;
       await audioRef.current.play();
     } catch (error) {
       console.error("Audio playback failed", error);
@@ -32,10 +32,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if ((step === "home" || step === "rules" ) && audioRef)
-      playAudio();
+    if ((step === "home" || step === "rules") && audioRef) playAudio();
   }, [step, audioRef]);
-  
 
   const handleNameSubmit = (event) => {
     event.preventDefault();
@@ -82,8 +80,8 @@ function App() {
 
   return (
     <div className="noto-sans bg-gray-100 flex justify-center items-center w-screen h-screen max-h-screen p-0 m-0 aspect-[16/9]">
-      <audio id="audio" loop autoPlay ref={audioRef}> 
-        <source src="/music.mp4" type="audio/mp4"/>
+      <audio id="audio" loop autoPlay ref={audioRef}>
+        <source src="/music.mp3" type="audio/mp3" />
       </audio>
       <div className="flex justify-center items-center w-full h-full">
         <CSSTransition
@@ -94,11 +92,22 @@ function App() {
           unmountOnExit
         >
           <div className="relative w-full h-screen">
-            <img
+            {/*<img
               className="absolute inset-0 w-full h-full object-contain object-center 2xl:object-cover z-0"
               src="home.png"
               alt="Background"
-            />
+            />*/}
+
+            {/* Video Background */}
+            <video
+              autoPlay
+              muted
+              loop
+              className="absolute inset-0 w-full h-full object-cover z-0"
+            >
+              <source src="/home.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
 
             {/* Overlay content */}
             <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4 py-1 bg-black bg-opacity-25">
@@ -127,31 +136,44 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-6 max-w-2xl w-full bg-white rounded-lg shadow-md">
-            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold lg:mb-4 md:mb-3 mb-2 py-2 text-black">
-              กติกา
-            </h1>
-            <p className="lg:mb-6 md:mb-5 mb-4 lg:text-lg md:text-md text-sm text-start">
-              ผู้เล่นมีหัวใจอยู่ 3 ดวง หากตอบผิดจะโดนหักหัวใจ 1 ดวงต่อครั้ง
-              ซึ่งตอบผิดเกิน 3 ครั้ง (หัวใจหมด)
-              ผู้เล่นจะเห็นจุดจบของการสำรวจและได้รับข้อมูลเพิ่มเติมเกี่ยวกับสถานการณ์น้ำท่วมในกรุงเทพฯ
-              และแนวทางแก้ไข ขณะเดียวกัน หากผู้เล่นตอบถูกทั้งหมด
-              พวกเขาจะได้รับรางวัล เช่น
-              ข้อมูลเชิงลึกเพิ่มเติมเกี่ยวกับโครงการที่กำลังพัฒนาเพื่อป้องกันน้ำท่วมในอนาคต
-            </p>
-            <div className="flex justify-end">
-              <button
-                type="submit"
-                className="lg:px-6 lg:py-2 md:px-[21px] md:py-[7px] px-4 py-1.5 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg lg:text-lg md:text-md text-sm"
-                onClick={() => {
-                  setStep("null");
-                  setTimeout(() => {
-                    setStep("name");
-                  }, 510);
-                }}
-              >
-                ต่อไป
-              </button>
+          <div className="relative w-full h-screen">
+            <video
+              autoPlay
+              muted
+              loop
+              className="absolute inset-0 w-full h-full object-cover z-0"
+            >
+              <source src="/rules.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="relative z-10 flex flex-col justify-center items-center h-full">
+              <div className="text-center p-6 max-w-2xl w-full bg-white rounded-lg shadow-lg">
+                <h1 className="lg:text-3xl md:text-2xl text-xl font-bold lg:mb-4 md:mb-3 mb-2 py-2 text-black">
+                  กติกา
+                </h1>
+                <p className="lg:mb-6 md:mb-5 mb-4 lg:text-lg md:text-md text-sm text-start">
+                  ผู้เล่นมีหัวใจอยู่ 3 ดวง หากตอบผิดจะโดนหักหัวใจ 1 ดวงต่อครั้ง
+                  ซึ่งตอบผิดเกิน 3 ครั้ง (หัวใจหมด)
+                  ผู้เล่นจะเห็นจุดจบของการสำรวจและได้รับข้อมูลเพิ่มเติมเกี่ยวกับสถานการณ์น้ำท่วมในกรุงเทพฯ
+                  และแนวทางแก้ไข ขณะเดียวกัน หากผู้เล่นตอบถูกทั้งหมด
+                  พวกเขาจะได้รับรางวัล เช่น
+                  ข้อมูลเชิงลึกเพิ่มเติมเกี่ยวกับโครงการที่กำลังพัฒนาเพื่อป้องกันน้ำท่วมในอนาคต
+                </p>
+                <div className="flex justify-end">
+                  <button
+                    type="submit"
+                    className="lg:px-6 lg:py-2 md:px-[21px] md:py-[7px] px-4 py-1.5 shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg lg:text-lg md:text-md text-sm"
+                    onClick={() => {
+                      setStep("null");
+                      setTimeout(() => {
+                        setStep("name");
+                      }, 510);
+                    }}
+                  >
+                    ต่อไป
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </CSSTransition>
