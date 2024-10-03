@@ -81,7 +81,7 @@ function App() {
   };
 
   return (
-    <div className="noto-sans min-h-screen bg-gray-100 flex flex-col justify-center items-center text-gray-900">
+    <div className="noto-sans bg-gray-100 flex justify-center items-center w-screen h-screen max-h-screen p-0 m-0 aspect-[16/9]">
       <div className="flex justify-center items-center w-full h-full">
         <CSSTransition
           in={step === "home"}
@@ -92,7 +92,7 @@ function App() {
         >
           <div className="relative w-full h-screen">
             <img
-              className="absolute inset-0 w-full h-full 2xl:object-cover z-0"
+              className="absolute inset-0 w-full h-full object-contain object-center 2xl:object-cover z-0"
               src="home.png"
               alt="Background"
             />
