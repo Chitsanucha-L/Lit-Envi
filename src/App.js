@@ -273,14 +273,14 @@ function App() {
           unmountOnExit
         >
           <div className="lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-md">
-            <div className="flex justify-end space-x-[0.1vw] lg:mb-[0.45vw] mb-[0.675vw]">
+            <div className="flex justify-end space-x-[0.1vw] lg:mb-[0.45vw] mb-[0.625vw]">
               {Array.from({ length: 3 }, (_, index) => (
                 <div key={index}>
                   {index < hp ? (
                     <Heart
                       fill="red"
                       color="red"
-                      className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.875vw] h-[1.875vw] heart-animation"
+                      className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.75vw] h-[1.75vw] heart-animation"
                       style={{
                         animation:
                           currentHeart === index
@@ -291,7 +291,7 @@ function App() {
                   ) : (
                     <HeartCrack
                       color="#4f4f4f"
-                      className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.875vw] h-[1.875vw] heart-animation"
+                      className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.75vw] h-[1.75vw] heart-animation"
                       style={{
                         animation:
                           currentHeart === index
