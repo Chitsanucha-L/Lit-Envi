@@ -127,11 +127,11 @@ function App() {
 
             {/* Overlay content */}
             <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
-              <h1 className="xl:text-[1.8vw] lg:text-[2vw] text-[2.2vw] font-bold mb-[3.5vw] py-[0.4vw] text-white">
+              <h1 className="xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold lg:mb-[3.5vw] mb-[5vw] py-[0.4vw] text-white">
                 กรุงเทพฯ เมืองใต้น้ำ และวิถีชีวิต
               </h1>
               <button
-                className="px-[1.2vw] py-[0.4vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
+                className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                 onClick={() => {
                   playAudio();
                   setStep("null");
@@ -159,11 +159,11 @@ function App() {
               alt="Background"
             />
             <div className="absolute inset-0 z-10 flex flex-col justify-center items-center">
-              <div className="text-center p-[1.4vw] xl:max-w-[35vw] lg:max-w-[40vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-lg">
-                <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[0.4vw] py-[0.5vw] text-black">
+              <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-lg">
+                <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold lg:mb-[0.4vw] mb-[0.6vw] py-[0.5vw] text-black">
                   กติกา
                 </h1>
-                <p className="mb-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-start">
+                <p className="lg:mb-[0.8vw] mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-start">
                   ผู้เล่นมีหัวใจอยู่ 3 ดวง หากตอบผิดจะโดนหักหัวใจ 1 ดวงต่อครั้ง
                   ซึ่งตอบผิดเกิน 3 ครั้ง (หัวใจหมด)
                   ผู้เล่นจะเห็นจุดจบของการสำรวจและได้รับข้อมูลเพิ่มเติมเกี่ยวกับสถานการณ์น้ำท่วมในกรุงเทพฯ
@@ -174,7 +174,7 @@ function App() {
                 <div className="flex justify-end">
                   <button
                     type="submit"
-                    className="px-[1.2vw] py-[0.4vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
+                    className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                     onClick={() => {
                       setStep("null");
                       setTimeout(() => {
@@ -203,8 +203,8 @@ function App() {
               alt="Background"
             />
             <div className="absolute inset-0 z-10 flex flex-col justify-center items-center">
-              <div className="text-center p-[1.4vw] xl:max-w-[35vw] lg:max-w-[40vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-lg">
-                <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold py-[0.25vw] mb-[2.2vw] text-black">
+              <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-lg">
+                <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold py-[0.25vw] lg:mb-[2.2vw] mb-[3.3vw] text-black">
                   ใส่ชื่อนักเดินทาง
                 </h1>
                 <form
@@ -216,12 +216,12 @@ function App() {
                     placeholder="ชื่อนักเดินทาง"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
-                    className="p-[0.4vw] border border-gray-300 rounded-[0.4vw] mb-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
+                    className="lg:p-[0.4vw] p-[0.6vw] border border-gray-300 lg:rounded-[0.4vw] rounded-[0.6vw] lg:mb-[0.8vw] mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                     required
                   />
                   <button
                     type="submit"
-                    className="px-[1.2vw] py-[0.45vw] shadow-lg bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
+                    className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-blue-500 hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                   >
                     เริ่มต้นเดินทาง
                   </button>
@@ -237,11 +237,11 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-[1.4vw] xl:max-w-[35vw] lg:max-w-[40vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-md">
-            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[1.2vw] text-black">
+          <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-md">
+            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold lg:mb-[1.2vw] mb-[1.8vw] text-black">
               สวัสดีคุณ {userName}!
             </h1>
-            <p className="mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-start">
+            <p className="lg:mb-[1.2vw] mb-[1.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-start">
               <span className="font-bold text-black">เนื้อเรื่อง:</span>{" "}
               ในอนาคตกรุงเทพฯ เผชิญกับการท่วมครั้งใหญ่
               ทุกพื้นที่ต่ำถูกน้ำท่วมล้นจนกลายเป็นทะเลสาบขนาดใหญ่
@@ -252,7 +252,7 @@ function App() {
             </p>
             <div className="flex justify-end">
               <button
-                className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
+                className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                 onClick={() => {
                   setStep("null");
                   setTimeout(() => {
@@ -272,8 +272,8 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="p-[1.4vw] xl:max-w-[35vw] lg:max-w-[40vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-md">
-            <div className="flex justify-end space-x-[0.1vw] mb-[0.45vw]">
+          <div className="lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-md">
+            <div className="flex justify-end space-x-[0.1vw] lg:mb-[0.45vw] mb-[0.675vw]">
               {Array.from({ length: 3 }, (_, index) => (
                 <div key={index}>
                   {index < hp ? (
@@ -303,18 +303,18 @@ function App() {
                 </div>
               ))}
             </div>
-            <p className="mb-[1.6vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-start font-semibold text-black">
+            <p className="lg:mb-[1.6vw] mb-[2.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-start font-semibold text-black">
               <span className="mr-[0.2vw]">{currentQuestionIndex + 1}.</span>
               {questions[currentQuestionIndex].question.replaceAll(
                 "(ชื่อผู้เล่น)",
                 userName
               )}
             </p>
-            <div className="mb-[0.6vw]">
+            <div className="lg:mb-[0.6vw] mb-[0.9vw]">
               {questions[currentQuestionIndex].choices.map((choice, index) => (
                 <button
                   key={index}
-                  className="block w-full shadow-md text-left p-[0.6vw] my-[0.85vw] rounded-[0.4vw] bg-gray-200 hover:bg-blue-400 xl:text-[0.95vw] lg:text-[1.15vw] text-[1.35vw]"
+                  className="block w-full shadow-md text-left p-[0.6vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.4vw] rounded-[0.6vw] bg-gray-200 hover:bg-blue-400 xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]"
                   onClick={() => handleAnswerSelect(choice, index)}
                 >
                   {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
@@ -330,19 +330,19 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-[1.4vw] xl:max-w-[35vw] lg:max-w-[40vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-md">
-            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[1.2vw]">
+          <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-md">
+            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
               Test Completed!
             </h1>
-            <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-gray-700">
+            <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-gray-700">
               You've answered all the questions.
             </p>
-            <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-semibold">Summary:</h2>
-            <p className="mt-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]">
+            <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-semibold">Summary:</h2>
+            <p className="mt-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
               Thank you for completing the test, {userName}!
             </p>
             <button
-              className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 text-white rounded-[0.4vw] mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
+              className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-md bg-blue-500 text-white lg:rounded-[0.4vw] rounded-[0.6vw] mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
               onClick={() => {
                 setStep("null");
                 setTimeout(() => {
@@ -364,17 +364,17 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-[1.4vw] xl:max-w-[35vw] lg:max-w-[40vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-md">
-            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[1.2vw]">Test Failed!</h1>
-            <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-gray-700">
+          <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-md">
+            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">Test Failed!</h1>
+            <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-gray-700">
               You have run out of hearts.
             </p>
-            <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-semibold">Summary:</h2>
-            <p className="mt-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]">
+            <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-semibold">Summary:</h2>
+            <p className="mt-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
               Thank you for playing, {userName}!
             </p>
             <button
-              className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 text-white rounded-[0.4vw] mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
+              className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-md bg-blue-500 text-white lg:rounded-[0.4vw] rounded-[0.6vw] mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
               onClick={() => {
                 setStep("null");
                 setTimeout(() => {
