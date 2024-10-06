@@ -4,18 +4,41 @@ import { Heart, HeartCrack } from "lucide-react";
 import { CSSTransition } from "react-transition-group";
 import "./App.css";
 import axios from "axios";
+import gsap from "gsap";
 
 const apiClient = axios.create({
   baseURL: "https://gened-project.vercel.app",
 });
 
-function App() {
+const App = () => {
   const [step, setStep] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userName, setUserName] = useState("");
   const [hp, setHp] = useState(3);
   const audioRef = useRef(null);
   const [currentHeart, setCurrentHeart] = useState(0);
+  const [currentTab, setCurrentTab] = useState(0);
+
+  const tabs = [
+    {
+      content: `สวัสดีคุณ ${userName}! ตอนนี้คุณได้อยู่ที่กรุงเทพมหานครฯ`,
+    },
+    {
+      content:
+        "ในขณะนี้กรุงเทพฯ กำลังเผชิญกับการท่วมครั้งใหญ่\nทุกพื้นที่ต่ำถูกน้ำท่วมล้นจนกลายเป็นทะเลสาบขนาดใหญ่",
+    },
+    {
+      content:
+        "คุณและทีมของคุณเป็นกลุ่มนักสำรวจที่ได้รับมอบหมาย\nให้รวบรวมข้อมูลและหาแนวทางแก้ไขสถานการณ์ให้กับเมือง",
+    },
+    {
+      content:
+        "แต่ระหว่างการเดินทาง คุณต้องตอบคำถามเกี่ยวกับกรุงเทพฯ\nและสถานการณ์น้ำท่วมให้ถูกต้องเพื่อเอาชีวิตรอด",
+    },
+    {
+      content: "แต่ทุกครั้งที่คุณตอบผิดนั้น HP ของคุณจะลดลง!",
+    },
+  ];
 
   const playAudio = async () => {
     try {
@@ -94,6 +117,66 @@ function App() {
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
 
+  // Ensure GSAP waits for the title element to be available
+  useEffect(() => {
+    if (step === "home") {
+      const element1 = document.getElementById("home-title");
+      const element2 = document.getElementById("home-button");
+      if (element1 && element2) {
+        gsap.fromTo(
+          "#home-title",
+          {
+            y: '-4vw',
+            delay: 0.6,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+          }
+        );
+        gsap.fromTo(
+          "#home-button",
+          {
+            y: '4vw',
+            delay: 0.6,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+          }
+        );
+      }
+    }
+  }, [step]);
+
+  const [fadeClass, setFadeClass] = useState("fade-in");
+  const [contentDisabled, setContentDisabled] = useState(false);
+
+  const handleContent = () => {
+    setFadeClass("fade-out");
+    setContentDisabled(true);
+
+    if (currentTab === tabs.length - 1) {
+      setTimeout(() => {
+        setStep(null);
+        setTimeout(() => {
+          setStep("start");
+        }, 500);
+      }, 600);
+      return;
+    }
+
+    setTimeout(() => {
+      setCurrentTab((prevTab) => (prevTab + 1) % tabs.length);
+      setFadeClass("fade-in");
+      setTimeout(() => {
+        setContentDisabled(false);
+      }, 1000);
+    }, 600);
+  };
+
   return (
     <div className="noto-sans bg-gray-100 flex justify-center items-center w-screen max-h-screen p-0 m-0">
       <audio id="audio" loop autoPlay ref={audioRef}>
@@ -127,11 +210,16 @@ function App() {
 
             {/* Overlay content */}
             <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
-              <h1 className="xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold lg:mb-[3.5vw] mb-[5vw] py-[0.4vw] text-white">
+              <h1
+                id="home-title"
+                className="xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold lg:mb-[3.5vw] mb-[5vw] py-[0.4vw] text-white opacity-0"
+                style={{ textShadow: "0px 1px 30px #000" }}
+              >
                 กรุงเทพฯ เมืองใต้น้ำ และวิถีชีวิต
               </h1>
               <button
-                className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                id="home-button"
+                className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-lg bg-blue-500 hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] opacity-0"
                 onClick={() => {
                   playAudio();
                   setStep("null");
@@ -237,33 +325,28 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-md">
-            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold lg:mb-[1.2vw] mb-[1.8vw] text-black">
-              สวัสดีคุณ {userName}!
-            </h1>
-            <p className="lg:mb-[1.2vw] mb-[1.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-start">
-              <span className="font-bold text-black">เนื้อเรื่อง:</span>{" "}
-              ในอนาคตกรุงเทพฯ เผชิญกับการท่วมครั้งใหญ่
-              ทุกพื้นที่ต่ำถูกน้ำท่วมล้นจนกลายเป็นทะเลสาบขนาดใหญ่
-              คุณและทีมของคุณเป็นกลุ่มนักสำรวจที่ได้รับมอบหมายให้รวบรวมข้อมูลและหาแนวทางแก้ไขสถานการณ์ให้กับเมือง
-              แต่ระหว่างการเดินทาง คุณต้องตอบคำถามเกี่ยวกับกรุงเทพฯ
-              และสถานการณ์น้ำท่วมให้ถูกต้องเพื่อเอาชีวิตรอด ทุกครั้งที่ตอบผิด HP
-              ของคุณจะลดลง!
-            </p>
-            <div className="flex justify-end">
-              <button
-                className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
-                onClick={() => {
-                  setStep("null");
-                  setTimeout(() => {
-                    setStep("start");
-                  }, 510);
-                }}
+          <button
+            className="relative w-full h-full"
+            onClick={handleContent}
+            disabled={contentDisabled}
+          >
+            <img
+              className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+              src="name.png"
+              alt="Background"
+            />
+            <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
+              <div
+                className={`${fadeClass} xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold text-white opacity-0`}
               >
-                มาเริ่มกันเลย!
-              </button>
+                {tabs[currentTab].content.split("\n").map((line, index) => (
+                  <p key={index} style={{ textShadow: "0px 1px 30px #000" }}>
+                    {line}
+                  </p>
+                ))}
+              </div>
             </div>
-          </div>
+          </button>
         </CSSTransition>
         <CSSTransition
           in={step === "start" && currentQuestionIndex < questions.length}
@@ -337,7 +420,9 @@ function App() {
             <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-gray-700">
               You've answered all the questions.
             </p>
-            <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-semibold">Summary:</h2>
+            <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-semibold">
+              Summary:
+            </h2>
             <p className="mt-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
               Thank you for completing the test, {userName}!
             </p>
@@ -365,11 +450,15 @@ function App() {
           unmountOnExit
         >
           <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-md">
-            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">Test Failed!</h1>
+            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
+              Test Failed!
+            </h1>
             <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-gray-700">
               You have run out of hearts.
             </p>
-            <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-semibold">Summary:</h2>
+            <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-semibold">
+              Summary:
+            </h2>
             <p className="mt-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
               Thank you for playing, {userName}!
             </p>
@@ -392,6 +481,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

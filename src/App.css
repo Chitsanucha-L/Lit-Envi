@@ -30,3 +30,36 @@
 .heart-animation {
   animation: moveHeart 0.8s ease-in-out infinite;
 }
+
+.fade-in {
+  animation: fadeInFromBelow 1s ease-in-out forwards;
+}
+
+@keyframes fadeInFromBelow {
+  0% {
+    opacity: 0;
+    transform: translateY(1.6vw); /* Start 30px below the original position */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at the original position */
+  }
+}
+
+.fade-out {
+  animation: fadeOutToTop 1s ease-in-out forwards;
+}
+
+@keyframes fadeOutToTop {
+  0% {
+    opacity: 1;
+    transform: translateY(0); /* Start at the original position */
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-1.6vw); /* Move 30px up */
+  }
+}
+
+
+
