@@ -163,6 +163,40 @@ const App = () => {
         );
       }
     }
+    else if (step === "rules") {
+      const element1 = document.getElementById("rules-content");
+      if (element1) {
+        gsap.fromTo(
+          "#rules-content",
+          {
+            y: "4vw",
+            delay: 0.6,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+          }
+        );
+      }
+    }
+    else if (step === "name") {
+      const element1 = document.getElementById("name-content");
+      if (element1) {
+        gsap.fromTo(
+          "#name-content",
+          {
+            y: "4vw",
+            delay: 0.6,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+          }
+        );
+      }
+    }
   }, [step]);
 
   const [fadeClass, setFadeClass] = useState("fade-in");
@@ -262,7 +296,7 @@ const App = () => {
                   src="rules.png"
                   alt="Background"
                 />
-                <div className="absolute inset-0 z-10 flex flex-col justify-center items-center">
+                <div id="rules-content" className="absolute inset-0 z-10 flex flex-col justify-center items-center opacity-0">
                   <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-lg">
                     <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold lg:mb-[0.4vw] mb-[0.6vw] py-[0.5vw] text-black">
                       กติกา
@@ -306,7 +340,7 @@ const App = () => {
                   src="name.png"
                   alt="Background"
                 />
-                <div className="absolute inset-0 z-10 flex flex-col justify-center items-center">
+                <div id="name-content" className="absolute inset-0 z-10 flex flex-col justify-center items-center opacity-0">
                   <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-lg">
                     <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold py-[0.25vw] lg:mb-[2.2vw] mb-[3.3vw] text-black">
                       ใส่ชื่อนักเดินทาง
