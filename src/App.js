@@ -314,7 +314,7 @@ function App() {
               {questions[currentQuestionIndex].choices.map((choice, index) => (
                 <button
                   key={index}
-                  className="block w-full shadow-md text-left p-[0.6vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.4vw] rounded-[0.6vw] bg-gray-200 hover:bg-blue-400 xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]"
+                  className="block w-full shadow-md text-left lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.4vw] rounded-[0.6vw] bg-gray-200 hover:bg-blue-400 xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]"
                   onClick={() => handleAnswerSelect(choice, index)}
                 >
                   {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
