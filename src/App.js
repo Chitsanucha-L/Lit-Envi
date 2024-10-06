@@ -280,7 +280,7 @@ function App() {
                     <Heart
                       fill="red"
                       color="red"
-                      className="w-[1.25vw] h-[1.25vw] heart-animation"
+                      className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.875vw] h-[1.875vw] heart-animation"
                       style={{
                         animation:
                           currentHeart === index
@@ -291,7 +291,7 @@ function App() {
                   ) : (
                     <HeartCrack
                       color="#4f4f4f"
-                      className="w-[1.25vw] h-[1.25vw] heart-animation"
+                      className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.875vw] h-[1.875vw] heart-animation"
                       style={{
                         animation:
                           currentHeart === index
