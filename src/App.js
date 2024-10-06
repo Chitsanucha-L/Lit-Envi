@@ -15,6 +15,8 @@ const App = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userName, setUserName] = useState("");
   const [hp, setHp] = useState(3);
+  const [point, setPoint] = useState(0);
+  const max = questions.length;
   const audioRef = useRef(null);
   const [currentHeart, setCurrentHeart] = useState(0);
   const [currentTab, setCurrentTab] = useState(0);
@@ -98,6 +100,9 @@ const App = () => {
     }
     if (correctAnswers.includes(choice)) {
       console.log("Correct!");
+      setPoint((prevPoint) => {
+        return prevPoint + 1;
+      });
     } else {
       console.log("Incorrect!");
       setHp((prevHp) => {
@@ -221,7 +226,7 @@ const App = () => {
       setFadeClass("fade-in");
       setTimeout(() => {
         setContentDisabled(false);
-      }, 1000);
+      }, 900);
     }, 600);
   };
 
@@ -269,7 +274,7 @@ const App = () => {
                   </h1>
                   <button
                     id="home-button"
-                    className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-lg bg-blue-500 hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] opacity-0"
+                    className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] opacity-0"
                     onClick={() => {
                       playAudio();
                       setStep("null");
@@ -296,7 +301,7 @@ const App = () => {
                   src="rules.png"
                   alt="Background"
                 />
-                <div id="rules-content" className="absolute inset-0 z-10 flex flex-col justify-center items-center opacity-0">
+                <div id="rules-content" className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0">
                   <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-lg">
                     <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold lg:mb-[0.4vw] mb-[0.6vw] py-[0.5vw] text-black">
                       กติกา
@@ -312,7 +317,7 @@ const App = () => {
                     <div className="flex justify-end">
                       <button
                         type="submit"
-                        className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                        className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                         onClick={() => {
                           setStep("null");
                           setTimeout(() => {
@@ -340,7 +345,7 @@ const App = () => {
                   src="name.png"
                   alt="Background"
                 />
-                <div id="name-content" className="absolute inset-0 z-10 flex flex-col justify-center items-center opacity-0">
+                <div id="name-content" className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0">
                   <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-lg">
                     <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold py-[0.25vw] lg:mb-[2.2vw] mb-[3.3vw] text-black">
                       ใส่ชื่อนักเดินทาง
@@ -359,7 +364,7 @@ const App = () => {
                       />
                       <button
                         type="submit"
-                        className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-blue-500 hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                        className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.4vw] rounded-[0.6vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                       >
                         เริ่มต้นเดินทาง
                       </button>
@@ -408,7 +413,7 @@ const App = () => {
               mountOnEnter
               unmountOnExit
             >
-              <div className="lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-md">
+              <div className="lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-xl">
                 <div className="flex justify-end space-x-[0.1vw] lg:mb-[0.45vw] mb-[0.625vw]">
                   {Array.from({ length: 3 }, (_, index) => (
                     <div key={index}>
@@ -470,21 +475,18 @@ const App = () => {
               mountOnEnter
               unmountOnExit
             >
-              <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-md">
+              <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-xl">
                 <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
-                  Test Completed!
+                  เย้! ยินดีด้วยย
                 </h1>
                 <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-gray-700">
-                  You've answered all the questions.
+                  คุณ {userName} ได้ผ่านบททดสอบและได้คะแนน {point} จาก {max}
                 </p>
-                <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-semibold">
-                  Summary:
-                </h2>
                 <p className="mt-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
-                  Thank you for completing the test, {userName}!
+                  ขอบคูณที่เข้ามาเล่นน้าา คุณ {userName}!
                 </p>
                 <button
-                  className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-md bg-blue-500 text-white lg:rounded-[0.4vw] rounded-[0.6vw] mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                  className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] text-white lg:rounded-[0.4vw] rounded-[0.6vw] mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                   onClick={() => {
                     setStep("null");
                     setTimeout(() => {
@@ -495,7 +497,7 @@ const App = () => {
                     }, 510);
                   }}
                 >
-                  Restart Test
+                  ลองใหม่อีกครั้ง
                 </button>
               </div>
             </CSSTransition>
@@ -506,21 +508,18 @@ const App = () => {
               mountOnEnter
               unmountOnExit
             >
-              <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-md">
+              <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.4vw] rounded-[0.6vw] shadow-xl">
                 <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
-                  Test Failed!
+                  เสียใจด้วยย!
                 </h1>
                 <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-gray-700">
-                  You have run out of hearts.
+                  คุณได้ตอบผิดครบ 3 ครั้งแล้ว T^T
                 </p>
-                <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-semibold">
-                  Summary:
-                </h2>
                 <p className="mt-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
-                  Thank you for playing, {userName}!
+                  ขอบคูณที่เข้ามาเล่นน้าา คุณ {userName}!
                 </p>
                 <button
-                  className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-md bg-blue-500 text-white lg:rounded-[0.4vw] rounded-[0.6vw] mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                  className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] text-white lg:rounded-[0.4vw] rounded-[0.6vw] mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                   onClick={() => {
                     setStep("null");
                     setTimeout(() => {
@@ -531,7 +530,7 @@ const App = () => {
                     }, 510);
                   }}
                 >
-                  Restart Test
+                  ลองใหม่อีกครั้ง
                 </button>
               </div>
             </CSSTransition>
