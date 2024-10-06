@@ -127,11 +127,11 @@ function App() {
 
             {/* Overlay content */}
             <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
-              <h1 className="xl:text-[1.8vw] text-[2vw] font-bold mb-[3.5vw] py-[0.4vw] text-white">
+              <h1 className="xl:text-[1.8vw] lg:text-[2vw] text-[2.2vw] font-bold mb-[3.5vw] py-[0.4vw] text-white">
                 กรุงเทพฯ เมืองใต้น้ำ และวิถีชีวิต
               </h1>
               <button
-                className="px-[1.2vw] py-[0.4vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] text-[1.2vw]"
+                className="px-[1.2vw] py-[0.4vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
                 onClick={() => {
                   playAudio();
                   setStep("null");
@@ -160,10 +160,10 @@ function App() {
             />
             <div className="absolute inset-0 z-10 flex flex-col justify-center items-center">
               <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-lg">
-                <h1 className="xl:text-[1.6vw] text-[1.8vw] font-bold mb-[0.4vw] py-[0.5vw] text-black">
+                <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[0.4vw] py-[0.5vw] text-black">
                   กติกา
                 </h1>
-                <p className="mb-[0.8vw] xl:text-[1vw] text-[1.2vw] text-start">
+                <p className="mb-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-start">
                   ผู้เล่นมีหัวใจอยู่ 3 ดวง หากตอบผิดจะโดนหักหัวใจ 1 ดวงต่อครั้ง
                   ซึ่งตอบผิดเกิน 3 ครั้ง (หัวใจหมด)
                   ผู้เล่นจะเห็นจุดจบของการสำรวจและได้รับข้อมูลเพิ่มเติมเกี่ยวกับสถานการณ์น้ำท่วมในกรุงเทพฯ
@@ -174,7 +174,7 @@ function App() {
                 <div className="flex justify-end">
                   <button
                     type="submit"
-                    className="px-[1.2vw] py-[0.4vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] text-[1.2vw]"
+                    className="px-[1.2vw] py-[0.4vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
                     onClick={() => {
                       setStep("null");
                       setTimeout(() => {
@@ -204,7 +204,7 @@ function App() {
             />
             <div className="absolute inset-0 z-10 flex flex-col justify-center items-center">
               <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-lg">
-                <h1 className="xl:text-[1.6vw] text-[1.8vw] font-bold py-[0.25vw] mb-[2.2vw] text-black">
+                <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold py-[0.25vw] mb-[2.2vw] text-black">
                   ใส่ชื่อนักเดินทาง
                 </h1>
                 <form
@@ -216,12 +216,12 @@ function App() {
                     placeholder="ชื่อนักเดินทาง"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
-                    className="p-[0.4vw] border border-gray-300 rounded-[0.4vw] mb-[0.8vw] xl:text-[1vw] text-[1.2vw]"
+                    className="p-[0.4vw] border border-gray-300 rounded-[0.4vw] mb-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
                     required
                   />
                   <button
                     type="submit"
-                    className="px-[1.2vw] py-[0.45vw] shadow-lg bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] text-[1.2vw]"
+                    className="px-[1.2vw] py-[0.45vw] shadow-lg bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
                   >
                     เริ่มต้นเดินทาง
                   </button>
@@ -238,10 +238,10 @@ function App() {
           unmountOnExit
         >
           <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-md">
-            <h1 className="xl:text-[1.6vw] text-[1.8vw] font-bold mb-[1.2vw] text-black">
+            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[1.2vw] text-black">
               สวัสดีคุณ {userName}!
             </h1>
-            <p className="mb-[1.2vw] xl:text-[1vw] text-[1.2vw] text-start">
+            <p className="mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-start">
               <span className="font-bold text-black">เนื้อเรื่อง:</span>{" "}
               ในอนาคตกรุงเทพฯ เผชิญกับการท่วมครั้งใหญ่
               ทุกพื้นที่ต่ำถูกน้ำท่วมล้นจนกลายเป็นทะเลสาบขนาดใหญ่
@@ -252,7 +252,7 @@ function App() {
             </p>
             <div className="flex justify-end">
               <button
-                className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] text-[1.2vw]"
+                className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
                 onClick={() => {
                   setStep("null");
                   setTimeout(() => {
@@ -303,7 +303,7 @@ function App() {
                 </div>
               ))}
             </div>
-            <p className="mb-[1.6vw] xl:text-[1vw] text-[1.2vw] text-start font-semibold text-black">
+            <p className="mb-[1.6vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-start font-semibold text-black">
               <span className="mr-[0.2vw]">{currentQuestionIndex + 1}.</span>
               {questions[currentQuestionIndex].question.replaceAll(
                 "(ชื่อผู้เล่น)",
@@ -314,7 +314,7 @@ function App() {
               {questions[currentQuestionIndex].choices.map((choice, index) => (
                 <button
                   key={index}
-                  className="block w-full shadow-md text-left p-[0.6vw] my-[0.85vw] rounded-[0.4vw] bg-gray-200 hover:bg-blue-400 xl:text-[0.95vw] text-[1.15vw]"
+                  className="block w-full shadow-md text-left p-[0.6vw] my-[0.85vw] rounded-[0.4vw] bg-gray-200 hover:bg-blue-400 xl:text-[0.95vw] lg:text-[1.15vw] text-[1.35vw]"
                   onClick={() => handleAnswerSelect(choice, index)}
                 >
                   {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
@@ -331,18 +331,18 @@ function App() {
           unmountOnExit
         >
           <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-md">
-            <h1 className="xl:text-[1.6vw] text-[1.8vw] font-bold mb-[1.2vw]">
+            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[1.2vw]">
               Test Completed!
             </h1>
-            <p className="mt-[0.8vw] xl:text-[1vw] text-[1.2vw] text-gray-700">
+            <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-gray-700">
               You've answered all the questions.
             </p>
-            <h2 className="mt-[0.8vw] xl:text-[1.6vw] text-[1.8vw] font-semibold">Summary:</h2>
-            <p className="mt-[0.4vw] xl:text-[1vw] text-[1.2vw]">
+            <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-semibold">Summary:</h2>
+            <p className="mt-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]">
               Thank you for completing the test, {userName}!
             </p>
             <button
-              className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 text-white rounded-[0.4vw] mt-[0.8vw] xl:text-[1vw] text-[1.2vw]"
+              className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 text-white rounded-[0.4vw] mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
               onClick={() => {
                 setStep("null");
                 setTimeout(() => {
@@ -365,16 +365,16 @@ function App() {
           unmountOnExit
         >
           <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-md">
-            <h1 className="xl:text-[1.6vw] text-[1.8vw] font-bold mb-[1.2vw]">Test Failed!</h1>
-            <p className="mt-[0.8vw] xl:text-[1vw] text-[1.2vw] text-gray-700">
+            <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[1.2vw]">Test Failed!</h1>
+            <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-gray-700">
               You have run out of hearts.
             </p>
-            <h2 className="mt-[0.8vw] xl:text-[1.6vw] text-[1.8vw] font-semibold">Summary:</h2>
-            <p className="mt-[0.4vw] xl:text-[1vw] text-[1.2vw]">
+            <h2 className="mt-[0.8vw] xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-semibold">Summary:</h2>
+            <p className="mt-[0.4vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]">
               Thank you for playing, {userName}!
             </p>
             <button
-              className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 text-white rounded-[0.4vw] mt-[0.8vw] xl:text-[1vw] text-[1.2vw]"
+              className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 text-white rounded-[0.4vw] mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw]"
               onClick={() => {
                 setStep("null");
                 setTimeout(() => {
