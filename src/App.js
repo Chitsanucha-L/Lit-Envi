@@ -127,11 +127,11 @@ function App() {
 
             {/* Overlay content */}
             <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
-              <h1 className="text-[1.9vw] font-bold mb-[3vw] py-[0.4vw] text-white">
+              <h1 className="text-[1.9vw] font-bold mb-[3.5vw] py-[0.4vw] text-white">
                 กรุงเทพฯ เมืองใต้น้ำ และวิถีชีวิต
               </h1>
               <button
-                className="px-[1.2vw] py-[0.4vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-[1.1vw]"
+                className="px-[1.2vw] py-[0.4vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] text-[1.1vw]"
                 onClick={() => {
                   playAudio();
                   setStep("null");
@@ -159,7 +159,7 @@ function App() {
               alt="Background"
             />
             <div className="absolute inset-0 z-10 flex flex-col justify-center items-center">
-              <div className="text-center p-[1.3vw] max-w-[35vw] w-full bg-white rounded-lg shadow-lg">
+              <div className="text-center p-[1.4vw] max-w-[35vw] w-full bg-white rounded-[0.4vw] shadow-lg">
                 <h1 className="text-[1.7vw] font-bold mb-[0.4vw] py-[0.5vw] text-black">
                   กติกา
                 </h1>
@@ -174,7 +174,7 @@ function App() {
                 <div className="flex justify-end">
                   <button
                     type="submit"
-                    className="px-[1.2vw] py-[0.4vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-[1.1vw]"
+                    className="px-[1.2vw] py-[0.4vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] text-[1.1vw]"
                     onClick={() => {
                       setStep("null");
                       setTimeout(() => {
@@ -203,7 +203,7 @@ function App() {
               alt="Background"
             />
             <div className="absolute inset-0 z-10 flex flex-col justify-center items-center">
-              <div className="text-center p-[1.3vw] max-w-[35vw] w-full bg-white rounded-lg shadow-lg">
+              <div className="text-center p-[1.4vw] max-w-[35vw] w-full bg-white rounded-[0.4vw] shadow-lg">
                 <h1 className="text-[1.7vw] font-bold py-[0.25vw] mb-[2.2vw] text-black">
                   ใส่ชื่อนักเดินทาง
                 </h1>
@@ -216,12 +216,12 @@ function App() {
                     placeholder="ชื่อนักเดินทาง"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
-                    className="p-[0.4vw] border border-gray-300 rounded-lg mb-[0.8vw] text-[1.1vw]"
+                    className="p-[0.4vw] border border-gray-300 rounded-[0.4vw] mb-[0.8vw] text-[1.1vw]"
                     required
                   />
                   <button
                     type="submit"
-                    className="px-[1.2vw] py-[0.45vw] shadow-lg bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-[1.1vw]"
+                    className="px-[1.2vw] py-[0.45vw] shadow-lg bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] text-[1.1vw]"
                   >
                     เริ่มต้นเดินทาง
                   </button>
@@ -237,7 +237,7 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-[1.3vw] max-w-[35vw] w-full bg-white rounded-lg shadow-md">
+          <div className="text-center p-[1.4vw] max-w-[35vw] w-full bg-white rounded-[0.4vw] shadow-md">
             <h1 className="text-[1.7vw] font-bold mb-[1.2vw] text-black">
               สวัสดีคุณ {userName}!
             </h1>
@@ -252,7 +252,7 @@ function App() {
             </p>
             <div className="flex justify-end">
               <button
-                className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-[1.1vw]"
+                className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-[0.4vw] text-[1.1vw]"
                 onClick={() => {
                   setStep("null");
                   setTimeout(() => {
@@ -272,15 +272,15 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="p-[1.3vw] max-w-[35vw] w-full bg-white rounded-lg shadow-md">
-            <div className="flex justify-end space-x-[0.1vw] mb-[0.5vw]">
+          <div className="p-[1.4vw] max-w-[35vw] w-full bg-white rounded-[0.4vw] shadow-md">
+            <div className="flex justify-end space-x-[0.1vw] mb-[0.45vw]">
               {Array.from({ length: 3 }, (_, index) => (
                 <div key={index}>
                   {index < hp ? (
                     <Heart
                       fill="red"
                       color="red"
-                      className="w-[1.25vw] heart-animation"
+                      className="w-[1.25vw] h-[1.25vw] heart-animation"
                       style={{
                         animation:
                           currentHeart === index
@@ -291,7 +291,7 @@ function App() {
                   ) : (
                     <HeartCrack
                       color="#4f4f4f"
-                      className="w-[1.25vw] heart-animation"
+                      className="w-[1.25vw] h-[1.25vw] heart-animation"
                       style={{
                         animation:
                           currentHeart === index
@@ -314,7 +314,7 @@ function App() {
               {questions[currentQuestionIndex].choices.map((choice, index) => (
                 <button
                   key={index}
-                  className="block w-full shadow-md text-left p-[0.6vw] my-[0.85vw] rounded-lg bg-gray-200 hover:bg-blue-400 text-[0.95vw]"
+                  className="block w-full shadow-md text-left p-[0.6vw] my-[0.85vw] rounded-[0.4vw] bg-gray-200 hover:bg-blue-400 text-[0.95vw]"
                   onClick={() => handleAnswerSelect(choice, index)}
                 >
                   {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
@@ -330,7 +330,7 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-[1.3vw] max-w-[35vw] w-full bg-white rounded-lg shadow-md">
+          <div className="text-center p-[1.4vw] max-w-[35vw] w-full bg-white rounded-[0.4vw] shadow-md">
             <h1 className="text-[1.7vw] font-bold mb-[1.2vw]">
               Test Completed!
             </h1>
@@ -342,7 +342,7 @@ function App() {
               Thank you for completing the test, {userName}!
             </p>
             <button
-              className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 text-white rounded-lg mt-[0.8vw] text-[1.1vw]"
+              className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 text-white rounded-[0.4vw] mt-[0.8vw] text-[1.1vw]"
               onClick={() => {
                 setStep("null");
                 setTimeout(() => {
@@ -364,7 +364,7 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-[1.3vw] max-w-[35vw] w-full bg-white rounded-lg shadow-md">
+          <div className="text-center p-[1.4vw] max-w-[35vw] w-full bg-white rounded-[0.4vw] shadow-md">
             <h1 className="text-[1.7vw] font-bold mb-[1.2vw]">Test Failed!</h1>
             <p className="mt-[0.8vw] text-[1.1vw] text-gray-700">
               You have run out of hearts.
@@ -374,7 +374,7 @@ function App() {
               Thank you for playing, {userName}!
             </p>
             <button
-              className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 text-white rounded-lg mt-[0.8vw] text-[1.1vw]"
+              className="px-[1.2vw] py-[0.45vw] shadow-md bg-blue-500 text-white rounded-[0.4vw] mt-[0.8vw] text-[1.1vw]"
               onClick={() => {
                 setStep("null");
                 setTimeout(() => {
