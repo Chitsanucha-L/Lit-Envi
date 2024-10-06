@@ -190,28 +190,37 @@ function App() {
           unmountOnExit
         >
           <div className="text-center p-6 max-w-2xl w-full bg-white rounded-lg shadow-md">
-            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold py-1 lg:mb-10 md:mb-8 mb-6 text-black">
-              ใส่ชื่อนักเดินทาง
-            </h1>
-            <form
-              onSubmit={handleNameSubmit}
-              className="relative flex flex-col space-y-2 mb-4 px-4"
-            >
-              <input
-                type="text"
-                placeholder="ชื่อนักเดินทาง"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                className="lg:p-2 p-1.5 border border-gray-300 rounded lg:mb-4 mb-3 lg:text-lg md:text-md text-sm"
-                required
-              />
-              <button
-                type="submit"
-                className="lg:px-6 lg:py-2 px-[21px] py-[7px] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg lg:text-lg md:text-md text-sm"
-              >
-                เริ่มต้นเดินทาง
-              </button>
-            </form>
+            <img
+              className="absolute inset-0 w-full h-full object-contain object-center 2xl:object-cover z-0"
+              src="name.png"
+              alt="Background"
+            />
+            <div className="relative z-10 flex flex-col justify-center items-center h-full">
+              <div className="text-center p-6 max-w-2xl w-full bg-white rounded-lg shadow-lg">
+                <h1 className="lg:text-3xl md:text-2xl text-xl font-bold py-1 lg:mb-10 md:mb-8 mb-6 text-black">
+                  ใส่ชื่อนักเดินทาง
+                </h1>
+                <form
+                  onSubmit={handleNameSubmit}
+                  className="relative flex flex-col space-y-2 mb-4 px-4"
+                >
+                  <input
+                    type="text"
+                    placeholder="ชื่อนักเดินทาง"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    className="lg:p-2 p-1.5 border border-gray-300 rounded lg:mb-4 mb-3 lg:text-lg md:text-md text-sm"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="lg:px-6 lg:py-2 px-[21px] py-[7px] shadow-md bg-blue-500 hover:bg-blue-600 text-white rounded-lg lg:text-lg md:text-md text-sm"
+                  >
+                    เริ่มต้นเดินทาง
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </CSSTransition>
         <CSSTransition
