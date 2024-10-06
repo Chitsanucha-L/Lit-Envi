@@ -15,6 +15,7 @@ function App() {
   const [userName, setUserName] = useState("");
   const [hp, setHp] = useState(3);
   const audioRef = useRef(null);
+  const [currentHeart, setCurrentHeart] = useState(0);
 
   const playAudio = async () => {
     try {
@@ -78,8 +79,16 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeart((prev) => (prev + 1) % 3); // Cycle through 0, 1, 2
+    }, 1200); // matches the animation duration
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
+
   return (
-    <div className="noto-sans bg-black flex justify-center items-center w-screen h-screen max-h-screen p-0 m-0 aspect-[16/9]">
+    <div className="noto-sans bg-gray-100 flex justify-center items-center w-screen h-screen max-h-screen p-0 m-0 aspect-[16/9]">
       <audio id="audio" loop autoPlay ref={audioRef}>
         <source src="/music.mp3" type="audio/mp3" />
       </audio>
@@ -92,13 +101,13 @@ function App() {
           unmountOnExit
         >
           <div className="relative w-full h-screen">
-            {/*<img
+            <img
               className="absolute inset-0 w-full h-full object-contain object-center 2xl:object-cover z-0"
               src="home.png"
               alt="Background"
-            />*/}
+            />
 
-            {/* Video Background */}
+            {/* Video Background 
             <video
               autoPlay
               muted
@@ -107,7 +116,7 @@ function App() {
             >
               <source src="/home.mp4" type="video/mp4" />
               Your browser does not support the video tag.
-            </video>
+            </video>*/}
 
             {/* Overlay content */}
             <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4 py-1 bg-black bg-opacity-25">
@@ -259,12 +268,24 @@ function App() {
                     <Heart
                       fill="red"
                       color="red"
-                      className="lg:w-[24px] md:w-[22px] w-[20px]"
+                      className="lg:w-[24px] md:w-[22px] w-[20px] heart-animation"
+                      style={{
+                        animation:
+                          currentHeart === index
+                            ? "moveHeart 0.6s ease-in-out"
+                            : "none",
+                      }}
                     />
                   ) : (
                     <HeartCrack
                       color="#4f4f4f"
-                      className="lg:w-[24px] md:w-[22px] w-[20px]"
+                      className="lg:w-[24px] md:w-[22px] w-[20px] heart-animation"
+                      style={{
+                        animation:
+                          currentHeart === index
+                            ? "moveHeart 0.6s ease-in-out"
+                            : "none",
+                      }}
                     />
                   )}
                 </div>
@@ -284,7 +305,7 @@ function App() {
                   className="block w-full shadow-md text-left lg:p-[12px] md:p-[11px] p-[10px] lg:my-[16px] md:my-[15px] my-[14px] rounded-lg bg-gray-200 hover:bg-blue-400 lg:text-lg md:text-md text-sm"
                   onClick={() => handleAnswerSelect(choice, index)}
                 >
-                  {choice}
+                  {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
                 </button>
               ))}
             </div>

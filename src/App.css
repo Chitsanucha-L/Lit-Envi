@@ -14,3 +14,19 @@
   opacity: 0;
   transition: opacity 500ms ease-out;
 }
+
+@keyframes moveHeart {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.heart-animation {
+  animation: moveHeart 0.8s ease-in-out infinite;
+}
