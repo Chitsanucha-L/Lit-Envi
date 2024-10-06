@@ -146,15 +146,11 @@ function App() {
           unmountOnExit
         >
           <div className="relative w-full h-screen">
-            <video
-              autoPlay
-              muted
-              loop
-              className="absolute inset-0 w-full h-full object-cover z-0"
-            >
-              <source src="/rules.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <img
+              className="absolute inset-0 w-full h-full object-contain object-center 2xl:object-cover z-0"
+              src="rules.png"
+              alt="Background"
+            />
             <div className="relative z-10 flex flex-col justify-center items-center h-full">
               <div className="text-center p-6 max-w-2xl w-full bg-white rounded-lg shadow-lg">
                 <h1 className="lg:text-3xl md:text-2xl text-xl font-bold lg:mb-4 md:mb-3 mb-2 py-2 text-black">
