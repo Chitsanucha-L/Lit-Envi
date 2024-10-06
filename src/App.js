@@ -159,7 +159,7 @@ function App() {
               alt="Background"
             />
             <div className="absolute inset-0 z-10 flex flex-col justify-center items-center">
-              <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-lg">
+              <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-lg">
                 <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[0.4vw] py-[0.5vw] text-black">
                   กติกา
                 </h1>
@@ -203,7 +203,7 @@ function App() {
               alt="Background"
             />
             <div className="absolute inset-0 z-10 flex flex-col justify-center items-center">
-              <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-lg">
+              <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-lg">
                 <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold py-[0.25vw] mb-[2.2vw] text-black">
                   ใส่ชื่อนักเดินทาง
                 </h1>
@@ -237,7 +237,7 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-md">
+          <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-md">
             <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[1.2vw] text-black">
               สวัสดีคุณ {userName}!
             </h1>
@@ -272,7 +272,7 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-md">
+          <div className="p-[1.4vw] xl:max-w-[35vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-md">
             <div className="flex justify-end space-x-[0.1vw] mb-[0.45vw]">
               {Array.from({ length: 3 }, (_, index) => (
                 <div key={index}>
@@ -330,7 +330,7 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-md">
+          <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-md">
             <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[1.2vw]">
               Test Completed!
             </h1>
@@ -364,7 +364,7 @@ function App() {
           mountOnEnter
           unmountOnExit
         >
-          <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[40vw] w-full bg-white rounded-[0.4vw] shadow-md">
+          <div className="text-center p-[1.4vw] xl:max-w-[35vw] max-w-[42.5vw] w-full bg-white rounded-[0.4vw] shadow-md">
             <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] text-[2vw] font-bold mb-[1.2vw]">Test Failed!</h1>
             <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] text-[1.4vw] text-gray-700">
               You have run out of hearts.
