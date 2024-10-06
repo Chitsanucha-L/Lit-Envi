@@ -354,7 +354,7 @@ const App = () => {
                         placeholder="ชื่อนักเดินทาง"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
-                        className="lg:p-[0.4vw] p-[0.6vw] border border-gray-300 lg:rounded-[0.4vw] rounded-[0.6vw] lg:mb-[0.8vw] mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                        className="lg:p-[0.4vw] p-[0.6vw] border border-gray-300 outline-none lg:rounded-[0.4vw] rounded-[0.6vw] lg:mb-[0.8vw] mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                         required
                       />
                       <button
