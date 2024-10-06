@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import questions from "./data"; // Importing questions from the data file
-import { Heart, HeartCrack } from "lucide-react";
+import { Heart, HeartCrack, Check, X } from "lucide-react";
 import { CSSTransition } from "react-transition-group";
 import "./App.css";
 import axios from "axios";
@@ -12,8 +12,11 @@ const apiClient = axios.create({
 
 const App = () => {
   const [step, setStep] = useState(null);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userName, setUserName] = useState("");
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
+  const [feedback, setFeedback] = useState(null);
+  const [choiceDisabled, setChoiceDisabled] = useState(false);
   const [hp, setHp] = useState(3);
   const [point, setPoint] = useState(0);
   const max = questions.length;
@@ -84,7 +87,7 @@ const App = () => {
   };
 
   const handleAnswerSelect = (choice, index) => {
-    // You can implement your logic here to handle the answer
+    setChoiceDisabled(true);
     const correctAnswers = questions[currentQuestionIndex].answer;
     apiClient
       .put(`/number/${currentQuestionIndex + 1}/choice${index + 1}`)
@@ -98,13 +101,26 @@ const App = () => {
       }, 510);
       return 0;
     }
+    setSelectedAnswerIndex(index);
     if (correctAnswers.includes(choice)) {
       console.log("Correct!");
+      const correctSound = document.getElementById("correct");
+      correctSound.volume = 1
+      correctSound.play().catch((error) => {
+        console.error("Error playing sound", error);
+      });
+      setFeedback("correct");
       setPoint((prevPoint) => {
         return prevPoint + 1;
       });
     } else {
       console.log("Incorrect!");
+      const wrongSound = document.getElementById("wrong");
+      wrongSound.volume = 0.85
+      wrongSound.play().catch((error) => {
+        console.error("Error playing sound", error);
+      });
+      setFeedback("incorrect");
       setHp((prevHp) => {
         if (prevHp > 1) {
           return prevHp - 1; // Decrease HP
@@ -119,7 +135,12 @@ const App = () => {
 
     // Move to the next question after answering
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setTimeout(() => {
+        setSelectedAnswerIndex(null); // Reset selected answer index
+        setFeedback(null);
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setChoiceDisabled(false)
+      }, 2000);
     } else {
       setStep("null");
       setTimeout(() => {
@@ -167,8 +188,7 @@ const App = () => {
           }
         );
       }
-    }
-    else if (step === "rules") {
+    } else if (step === "rules") {
       const element1 = document.getElementById("rules-content");
       if (element1) {
         gsap.fromTo(
@@ -184,8 +204,7 @@ const App = () => {
           }
         );
       }
-    }
-    else if (step === "name") {
+    } else if (step === "name") {
       const element1 = document.getElementById("name-content");
       if (element1) {
         gsap.fromTo(
@@ -232,6 +251,8 @@ const App = () => {
 
   return (
     <div className="noto-sans bg-gray-100 flex justify-center items-center w-screen max-h-screen p-0 m-0">
+      <audio id="correct" src="/correct.mp3" preload="auto"></audio>
+      <audio id="wrong" src="/wrong.mp3" preload="auto"></audio>
       {isImageLoaded && (
         <>
           <audio id="audio" loop autoPlay ref={audioRef}>
@@ -301,7 +322,10 @@ const App = () => {
                   src="rules.png"
                   alt="Background"
                 />
-                <div id="rules-content" className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0">
+                <div
+                  id="rules-content"
+                  className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0"
+                >
                   <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-lg">
                     <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold lg:mb-[0.4vw] mb-[0.6vw] py-[0.5vw] text-black">
                       กติกา
@@ -345,7 +369,10 @@ const App = () => {
                   src="name.png"
                   alt="Background"
                 />
-                <div id="name-content" className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0">
+                <div
+                  id="name-content"
+                  className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0"
+                >
                   <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-lg">
                     <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold py-[0.25vw] lg:mb-[2.2vw] mb-[3.3vw] text-black">
                       ใส่ชื่อนักเดินทาง
@@ -458,10 +485,31 @@ const App = () => {
                     (choice, index) => (
                       <button
                         key={index}
-                        className="block w-full shadow-md text-left lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.6vw] rounded-[0.8vw] bg-gray-200 hover:bg-blue-400 xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]"
+                        disabled={choiceDisabled}
+                        className={`w-full flex justify-between items-center shadow-md lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.6vw] rounded-[0.8vw] ${
+                          selectedAnswerIndex === index
+                            ? feedback === "correct"
+                              ? "bg-[#a1f3be]"
+                              : "bg-[#fdb8b8]"
+                            : "bg-gray-200"
+                        }`}
                         onClick={() => handleAnswerSelect(choice, index)}
                       >
-                        {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
+                        <div className="text-left xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]">
+                          {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
+                        </div>
+                        {selectedAnswerIndex === index && feedback && (
+                          <div className="items-end">
+                            {feedback === "correct" ? (
+                              <Check
+                                strokeWidth={3.5}
+                                className="text-green-500"
+                              />
+                            ) : (
+                              <X strokeWidth={3.5} className="text-red-500" />
+                            )}
+                          </div>
+                        )}
                       </button>
                     )
                   )}
@@ -494,6 +542,14 @@ const App = () => {
                       setCurrentQuestionIndex(0);
                       setUserName("");
                       setHp(3);
+                      selectedAnswerIndex(null);
+                      setChoiceDisabled(false);
+                      setFeedback(null);
+                      setContentDisabled(false);
+                      setCurrentHeart(0);
+                      setCurrentTab(0);
+                      setPoint(0);
+                      setIsImageLoaded(false);
                     }, 510);
                   }}
                 >
@@ -512,11 +568,11 @@ const App = () => {
                 <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
                   เสียใจด้วยย!
                 </h1>
-                <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-gray-700">
+                <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
                   คุณได้ตอบผิดครบ 3 ครั้งแล้วว T^T
                 </p>
                 <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
-                  ขอบคูณที่เข้ามาเล่นน้าา คุณ {userName}!
+                  ขอบคุณที่เข้ามาเล่นน้าา คุณ {userName}!
                 </p>
                 <button
                   className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] text-white lg:rounded-[0.6vw] rounded-[0.8vw] mt-[1.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
@@ -527,6 +583,14 @@ const App = () => {
                       setCurrentQuestionIndex(0);
                       setUserName("");
                       setHp(3);
+                      selectedAnswerIndex(null);
+                      setChoiceDisabled(false);
+                      setFeedback(null);
+                      setContentDisabled(false);
+                      setCurrentHeart(0);
+                      setCurrentTab(0);
+                      setPoint(0);
+                      setIsImageLoaded(false);
                     }, 510);
                   }}
                 >
