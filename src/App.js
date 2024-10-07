@@ -86,11 +86,35 @@ const App = () => {
     }, 510);
   };
 
+  const [shuffledChoices, setShuffledChoices] = useState([]);
+
+  useEffect(() => {
+    const currentQuestion = questions[currentQuestionIndex];
+    const shuffled = shuffleArray(currentQuestion.choices);
+    setShuffledChoices(shuffled);
+  }, [currentQuestionIndex]);
+
+  const shuffleArray = (array) => {
+    let shuffledArray = array.slice(); // Create a copy of the array
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+    return shuffledArray;
+  };
+
   const handleAnswerSelect = (choice, index) => {
     setChoiceDisabled(true);
     const correctAnswers = questions[currentQuestionIndex].answer;
     apiClient
-      .put(`/number/${currentQuestionIndex + 1}/choice${index + 1}`)
+      .put(
+        `/number/${currentQuestionIndex + 1}/choice${
+          questions[currentQuestionIndex].choices.indexOf(choice) + 1
+        }`
+      )
       .catch((error) => {
         console.error("Failed to send choice to the server", error);
       });
@@ -105,7 +129,7 @@ const App = () => {
     if (correctAnswers.includes(choice)) {
       console.log("Correct!");
       const correctSound = document.getElementById("correct");
-      correctSound.volume = 1
+      correctSound.volume = 1;
       correctSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
@@ -116,7 +140,7 @@ const App = () => {
     } else {
       console.log("Incorrect!");
       const wrongSound = document.getElementById("wrong");
-      wrongSound.volume = 0.85
+      wrongSound.volume = 0.85;
       wrongSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
@@ -139,7 +163,7 @@ const App = () => {
         setSelectedAnswerIndex(null); // Reset selected answer index
         setFeedback(null);
         setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setChoiceDisabled(false)
+        setChoiceDisabled(false);
       }, 2000);
     } else {
       setStep("null");
@@ -481,38 +505,39 @@ const App = () => {
                   )}
                 </p>
                 <div className="lg:mb-[0.6vw] mb-[0.9vw]">
-                  {questions[currentQuestionIndex].choices.map(
-                    (choice, index) => (
-                      <button
-                        key={index}
-                        disabled={choiceDisabled}
-                        className={`w-full flex justify-between items-center shadow-md lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.6vw] rounded-[0.8vw] ${
-                          selectedAnswerIndex === index
-                            ? feedback === "correct"
-                              ? "bg-[#a1f3be]"
-                              : "bg-[#fdb8b8]"
-                            : "bg-gray-200"
-                        }`}
-                        onClick={() => handleAnswerSelect(choice, index)}
-                      >
-                        <div className="text-left xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]">
-                          {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
+                  {shuffledChoices.map((choice, index) => (
+                    <button
+                      key={index}
+                      disabled={choiceDisabled}
+                      className={`w-full flex justify-between items-center shadow-md lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.6vw] rounded-[0.8vw] ${
+                        selectedAnswerIndex === index
+                          ? feedback === "correct"
+                            ? "bg-[#a1f3be]"
+                            : "bg-[#fdb8b8]"
+                          : "bg-gray-200"
+                      }`}
+                      onClick={() => handleAnswerSelect(choice, index)}
+                    >
+                      <div className="text-left xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]">
+                        {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
+                      </div>
+                      {selectedAnswerIndex === index && feedback && (
+                        <div className="items-end lg:ml-[0.35vw] ml-[0.525vw]">
+                          {feedback === "correct" ? (
+                            <Check
+                              strokeWidth={3.5}
+                              className="text-green-500 lg:w-[1.30vw] lg:h-[1.30vw] w-[1.80vw] h-[1.80vw]"
+                            />
+                          ) : (
+                            <X
+                              strokeWidth={3.5}
+                              className="text-red-500 lg:w-[1.30vw] lg:h-[1.30vw] w-[1.80vw] h-[1.80vw]"
+                            />
+                          )}
                         </div>
-                        {selectedAnswerIndex === index && feedback && (
-                          <div className="items-end">
-                            {feedback === "correct" ? (
-                              <Check
-                                strokeWidth={3.5}
-                                className="text-green-500"
-                              />
-                            ) : (
-                              <X strokeWidth={3.5} className="text-red-500" />
-                            )}
-                          </div>
-                        )}
-                      </button>
-                    )
-                  )}
+                      )}
+                    </button>
+                  ))}
                 </div>
               </div>
             </CSSTransition>
