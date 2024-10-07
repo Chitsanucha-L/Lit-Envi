@@ -190,6 +190,7 @@ const App = () => {
         gsap.fromTo(
           "#home-title",
           {
+            opacity: 0,
             y: "-4vw",
             delay: 0.6,
           },
@@ -202,6 +203,7 @@ const App = () => {
         gsap.fromTo(
           "#home-button",
           {
+            opacity: 0,
             y: "4vw",
             delay: 0.6,
           },
@@ -312,14 +314,14 @@ const App = () => {
                 <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
                   <h1
                     id="home-title"
-                    className="xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold lg:mb-[3.5vw] mb-[5vw] py-[0.4vw] text-white opacity-0"
+                    className="xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold lg:mb-[3.5vw] mb-[5vw] py-[0.4vw] text-white"
                     style={{ textShadow: "0px 1px 30px #000" }}
                   >
                     กรุงเทพฯ เมืองใต้น้ำ และวิถีชีวิต
                   </h1>
                   <button
                     id="home-button"
-                    className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.6vw] rounded-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] opacity-0"
+                    className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.6vw] rounded-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                     onClick={() => {
                       playAudio();
                       setStep("null");
