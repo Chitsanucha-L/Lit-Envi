@@ -569,14 +569,13 @@ const App = () => {
                       setCurrentQuestionIndex(0);
                       setUserName("");
                       setHp(3);
-                      selectedAnswerIndex(null);
+                      setSelectedAnswerIndex(null);
                       setChoiceDisabled(false);
                       setFeedback(null);
                       setContentDisabled(false);
                       setCurrentHeart(0);
                       setCurrentTab(0);
                       setPoint(0);
-                      setIsImageLoaded(false);
                     }, 510);
                   }}
                 >
@@ -610,14 +609,13 @@ const App = () => {
                       setCurrentQuestionIndex(0);
                       setUserName("");
                       setHp(3);
-                      selectedAnswerIndex(null);
+                      setSelectedAnswerIndex(null);
                       setChoiceDisabled(false);
                       setFeedback(null);
                       setContentDisabled(false);
                       setCurrentHeart(0);
                       setCurrentTab(0);
                       setPoint(0);
-                      setIsImageLoaded(false);
                     }, 510);
                   }}
                 >
