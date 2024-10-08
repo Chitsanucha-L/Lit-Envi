@@ -58,7 +58,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setStep("home");
-    }, 510);
+    }, 650);
   }, []);
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const App = () => {
     setStep("null");
     setTimeout(() => {
       setStep("content");
-    }, 510);
+    }, 650);
   };
 
   const [shuffledChoices, setShuffledChoices] = useState([]);
@@ -122,7 +122,7 @@ const App = () => {
       setStep("null");
       setTimeout(() => {
         setStep("fail");
-      }, 510);
+      }, 650);
       return 0;
     }
     setSelectedAnswerIndex(index);
@@ -152,7 +152,7 @@ const App = () => {
         setStep("null");
         setTimeout(() => {
           setStep("fail");
-        }, 510);
+        }, 650);
         return 0; // Set HP to 0
       });
     }
@@ -169,7 +169,7 @@ const App = () => {
       setStep("null");
       setTimeout(() => {
         setStep("end");
-      }, 510);
+      }, 650);
     }
   };
 
@@ -261,7 +261,7 @@ const App = () => {
         setStep(null);
         setTimeout(() => {
           setStep("start");
-        }, 510);
+        }, 650);
       }, 600);
       return;
     }
@@ -276,7 +276,7 @@ const App = () => {
   };
 
   return (
-    <div className="noto-sans bg-gray-100 flex justify-center items-center w-screen max-h-screen p-0 m-0">
+    <div className="noto-sans bg-black flex justify-center items-center w-screen max-h-screen p-0 m-0">
       <audio id="correct" src="/correct.mp3" preload="auto"></audio>
       <audio id="wrong" src="/wrong.mp3" preload="auto"></audio>
       {isImageLoaded && (
@@ -287,7 +287,7 @@ const App = () => {
           <div className="flex justify-center items-center w-full min-h-screen h-full">
             <CSSTransition
               in={step === "home"}
-              timeout={500}
+              timeout={600}
               classNames="fade"
               mountOnEnter
               unmountOnExit
@@ -327,7 +327,7 @@ const App = () => {
                       setStep("null");
                       setTimeout(() => {
                         setStep("rules");
-                      }, 510);
+                      }, 650);
                     }}
                   >
                     เข้าสู่เนื้อเรื่อง
@@ -337,7 +337,7 @@ const App = () => {
             </CSSTransition>
             <CSSTransition
               in={step === "rules"}
-              timeout={500}
+              timeout={600}
               classNames="fade"
               mountOnEnter
               unmountOnExit
@@ -372,7 +372,7 @@ const App = () => {
                           setStep("null");
                           setTimeout(() => {
                             setStep("name");
-                          }, 510);
+                          }, 650);
                         }}
                       >
                         ต่อไป
@@ -384,7 +384,7 @@ const App = () => {
             </CSSTransition>
             <CSSTransition
               in={step === "name"}
-              timeout={500}
+              timeout={600}
               classNames="fade"
               mountOnEnter
               unmountOnExit
@@ -428,7 +428,7 @@ const App = () => {
             </CSSTransition>
             <CSSTransition
               in={step === "content"}
-              timeout={500}
+              timeout={600}
               classNames="fade"
               mountOnEnter
               unmountOnExit
@@ -461,91 +461,100 @@ const App = () => {
             </CSSTransition>
             <CSSTransition
               in={step === "start" && currentQuestionIndex < questions.length}
-              timeout={500}
+              timeout={600}
               classNames="fade"
               mountOnEnter
               unmountOnExit
             >
-              <div className="lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
-                <div className="flex justify-end space-x-[0.1vw] lg:mb-[0.45vw] mb-[0.625vw]">
-                  {Array.from({ length: 3 }, (_, index) => (
-                    <div key={index}>
-                      {index < hp ? (
-                        <Heart
-                          fill="red"
-                          color="red"
-                          className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.75vw] h-[1.75vw] heart-animation"
-                          style={{
-                            animation:
-                              currentHeart === index
-                                ? "moveHeart 0.6s ease-in-out"
-                                : "none",
-                          }}
-                        />
-                      ) : (
-                        <HeartCrack
-                          color="#4f4f4f"
-                          className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.75vw] h-[1.75vw] heart-animation"
-                          style={{
-                            animation:
-                              currentHeart === index
-                                ? "moveHeart 0.6s ease-in-out"
-                                : "none",
-                          }}
-                        />
-                      )}
-                    </div>
-                  ))}
-                </div>
-                <p className="lg:mb-[1.6vw] mb-[2.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-start font-semibold text-black">
-                  <span className="mr-[0.2vw]">
-                    {currentQuestionIndex + 1}.
-                  </span>
-                  {questions[currentQuestionIndex].question.replaceAll(
-                    "(ชื่อผู้เล่น)",
-                    userName
-                  )}
-                </p>
-                <div className="lg:mb-[0.6vw] mb-[0.9vw]">
-                  {shuffledChoices.map((choice, index) => (
-                    <button
-                      key={index}
-                      disabled={choiceDisabled}
-                      className={`w-full flex justify-between items-center shadow-md lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.6vw] rounded-[0.8vw] ${
-                        selectedAnswerIndex === index
-                          ? feedback === "correct"
-                            ? "bg-[#a1f3be]"
-                            : "bg-[#fdb8b8]"
-                          : "bg-gray-200"
-                      }`}
-                      onClick={() => handleAnswerSelect(choice, index)}
-                    >
-                      <div className="text-left xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]">
-                        {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
-                      </div>
-                      {selectedAnswerIndex === index && feedback && (
-                        <div className="items-end lg:ml-[0.35vw] ml-[0.525vw]">
-                          {feedback === "correct" ? (
-                            <Check
-                              strokeWidth={3.5}
-                              className="text-green-500 lg:w-[1.30vw] lg:h-[1.30vw] w-[1.80vw] h-[1.80vw]"
+              <div className="relative w-full h-full">
+                <img
+                  className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                  src={`/question/q${currentQuestionIndex + 1}.png`}
+                  alt="Background"
+                />
+                <div className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center">
+                  <div className="lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
+                    <div className="flex justify-end space-x-[0.1vw] lg:mb-[0.45vw] mb-[0.625vw]">
+                      {Array.from({ length: 3 }, (_, index) => (
+                        <div key={index}>
+                          {index < hp ? (
+                            <Heart
+                              fill="red"
+                              color="red"
+                              className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.75vw] h-[1.75vw] heart-animation"
+                              style={{
+                                animation:
+                                  currentHeart === index
+                                    ? "moveHeart 0.6s ease-in-out"
+                                    : "none",
+                              }}
                             />
                           ) : (
-                            <X
-                              strokeWidth={3.5}
-                              className="text-red-500 lg:w-[1.30vw] lg:h-[1.30vw] w-[1.80vw] h-[1.80vw]"
+                            <HeartCrack
+                              color="#4f4f4f"
+                              className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.75vw] h-[1.75vw] heart-animation"
+                              style={{
+                                animation:
+                                  currentHeart === index
+                                    ? "moveHeart 0.6s ease-in-out"
+                                    : "none",
+                              }}
                             />
                           )}
                         </div>
+                      ))}
+                    </div>
+                    <p className="lg:mb-[1.6vw] mb-[2.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-start font-semibold text-black">
+                      <span className="mr-[0.2vw]">
+                        {currentQuestionIndex + 1}.
+                      </span>
+                      {questions[currentQuestionIndex].question.replaceAll(
+                        "(ชื่อผู้เล่น)",
+                        userName
                       )}
-                    </button>
-                  ))}
+                    </p>
+                    <div className="lg:mb-[0.6vw] mb-[0.9vw]">
+                      {shuffledChoices.map((choice, index) => (
+                        <button
+                          key={index}
+                          disabled={choiceDisabled}
+                          className={`w-full flex justify-between items-center shadow-md lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.6vw] rounded-[0.8vw] border-2 bg-opacity-75 ${
+                            selectedAnswerIndex === index
+                              ? feedback === "correct"
+                                ? "bg-[#a1f3be] border-green-300"
+                                : "bg-[#fdb8b8] border-red-300"
+                              : "bg-gray-200 border-gray-300"
+                          }`}
+                          onClick={() => handleAnswerSelect(choice, index)}
+                        >
+                          <div className="text-left xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]">
+                            {choice.replaceAll("(ชื่อผู้เล่น)", userName)}
+                          </div>
+                          {selectedAnswerIndex === index && feedback && (
+                            <div className="items-end lg:ml-[0.35vw] ml-[0.525vw]">
+                              {feedback === "correct" ? (
+                                <Check
+                                  strokeWidth={3.5}
+                                  className="text-green-500 lg:w-[1.30vw] lg:h-[1.30vw] w-[1.80vw] h-[1.80vw]"
+                                />
+                              ) : (
+                                <X
+                                  strokeWidth={3.5}
+                                  className="text-red-500 lg:w-[1.30vw] lg:h-[1.30vw] w-[1.80vw] h-[1.80vw]"
+                                />
+                              )}
+                            </div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </CSSTransition>
             <CSSTransition
               in={step === "end"}
-              timeout={500}
+              timeout={600}
               classNames="fade"
               mountOnEnter
               unmountOnExit
@@ -576,7 +585,7 @@ const App = () => {
                       setCurrentHeart(0);
                       setCurrentTab(0);
                       setPoint(0);
-                    }, 510);
+                    }, 650);
                   }}
                 >
                   ลองใหม่อีกครั้ง
@@ -585,7 +594,7 @@ const App = () => {
             </CSSTransition>
             <CSSTransition
               in={step === "fail"}
-              timeout={500}
+              timeout={600}
               classNames="fade"
               mountOnEnter
               unmountOnExit
@@ -616,7 +625,7 @@ const App = () => {
                       setCurrentHeart(0);
                       setCurrentTab(0);
                       setPoint(0);
-                    }, 510);
+                    }, 650);
                   }}
                 >
                   ลองใหม่อีกครั้ง
