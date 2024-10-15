@@ -83,6 +83,13 @@ const App = () => {
         await Promise.all([
           preloadImage("pic/home.png"),
           preloadImage("pic/rules.png"),
+          preloadImage("pic/name.png"),
+          ...Array.from({ length: 10 }, (_, i) =>
+            preloadImage(`question/q${i + 1}.png`)
+          ),
+          preloadImage("summary/sad.png"),
+          preloadImage("summary/normal.png"),
+          preloadImage("summary/good.png"),
         ]);
         setIsImageLoaded(true); // Set state once all images are loaded
       } catch (error) {
