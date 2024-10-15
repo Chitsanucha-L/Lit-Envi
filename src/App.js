@@ -83,7 +83,6 @@ const App = () => {
         await Promise.all([
           preloadImage("pic/home.png"),
           preloadImage("pic/rules.png"),
-          preloadImage("pic/name.png"),
         ]);
         setIsImageLoaded(true); // Set state once all images are loaded
       } catch (error) {
@@ -338,7 +337,6 @@ const App = () => {
                   className="w-full h-full object-contain z-0"
                   src="pic/home.png"
                   alt="Background"
-                  loading="lazy"
                 />
                 <link className="w-full h-full object-contain z-0" rel="preload" href="pic/home.png" as="image"/>
 
@@ -379,7 +377,6 @@ const App = () => {
                   className="w-full h-full object-contain z-0"
                   src="pic/rules.png"
                   alt="Background"
-                  loading="lazy"
                 />
                 <div
                   id="rules-content"
@@ -427,7 +424,6 @@ const App = () => {
                   className="w-full h-full object-contain object-center 2xl:object-cover z-0"
                   src="pic/name.png"
                   alt="Background"
-                  loading="lazy"
                 />
                 <div
                   id="name-content"
