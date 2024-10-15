@@ -84,12 +84,6 @@ const App = () => {
           preloadImage("pic/home.png"),
           preloadImage("pic/rules.png"),
           preloadImage("pic/name.png"),
-          ...Array.from({ length: 10 }, (_, i) =>
-            preloadImage(`question/q${i + 1}.png`)
-          ),
-          preloadImage("summary/sad.png"),
-          preloadImage("summary/normal.png"),
-          preloadImage("summary/good.png"),
         ]);
         setIsImageLoaded(true); // Set state once all images are loaded
       } catch (error) {
@@ -172,7 +166,7 @@ const App = () => {
         hpNum = hpNum - 1;
         setHp(hpNum);
       } else {
-        hpNum = 0;
+        hpNum = 0
         setHp(hpNum);
         setStep("null");
         setTimeout(() => {
@@ -340,37 +334,36 @@ const App = () => {
               unmountOnExit
             >
               <div className="relative w-full h-full">
-                {/* Common wrapper for image and content */}
-                <div className="fade-transition w-full h-full flex justify-center items-center">
-                  <img
-                    className="w-full h-full object-contain z-0"
-                    src="pic/home.png"
-                    alt="Background"
-                  />
+                <img
+                  className="w-full h-full object-contain z-0"
+                  src="pic/home.png"
+                  alt="Background"
+                  loading="lazy"
+                />
+                <link className="w-full h-full object-contain z-0" rel="preload" href="pic/home.png" as="image"/>
 
-                  {/* Overlay content */}
-                  <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
-                    <h1
-                      id="home-title"
-                      className="xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold lg:mb-[3.5vw] mb-[5vw] py-[0.4vw] text-white"
-                      style={{ textShadow: "0px 1px 30px #000" }}
-                    >
-                      กรุงเทพฯ เมืองใต้น้ำ และวิถีชีวิต
-                    </h1>
-                    <button
-                      id="home-button"
-                      className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.6vw] rounded-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
-                      onClick={() => {
-                        playAudio();
-                        setStep("null");
-                        setTimeout(() => {
-                          setStep("rules");
-                        }, 650);
-                      }}
-                    >
-                      เข้าสู่เนื้อเรื่อง
-                    </button>
-                  </div>
+                {/* Overlay content */}
+                <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
+                  <h1
+                    id="home-title"
+                    className="xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold lg:mb-[3.5vw] mb-[5vw] py-[0.4vw] text-white"
+                    style={{ textShadow: "0px 1px 30px #000" }}
+                  >
+                    กรุงเทพฯ เมืองใต้น้ำ และวิถีชีวิต
+                  </h1>
+                  <button
+                    id="home-button"
+                    className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.6vw] rounded-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                    onClick={() => {
+                      playAudio();
+                      setStep("null");
+                      setTimeout(() => {
+                        setStep("rules");
+                      }, 650);
+                    }}
+                  >
+                    เข้าสู่เนื้อเรื่อง
+                  </button>
                 </div>
               </div>
             </CSSTransition>
@@ -382,43 +375,41 @@ const App = () => {
               unmountOnExit
             >
               <div className="relative w-full h-full">
-                {/* Common wrapper for image and content */}
-                <div className="fade-transition w-full h-full flex justify-center items-center">
-                  <img
-                    className="w-full h-full object-contain z-0"
-                    src="pic/rules.png"
-                    alt="Background"
-                  />
-                  <div
-                    id="rules-content"
-                    className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0"
-                  >
-                    <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-lg">
-                      <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold lg:mb-[0.4vw] mb-[0.6vw] py-[0.5vw] text-black">
-                        กติกา
-                      </h1>
-                      <p className="lg:mb-[0.8vw] mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-start">
-                        ผู้เล่นมีหัวใจอยู่ 3 ดวง หากตอบผิดจะโดนหักหัวใจ 1
-                        ดวงต่อครั้ง ซึ่งตอบผิดเกิน 3 ครั้ง (หัวใจหมด)
-                        ผู้เล่นจะเห็นจุดจบของการสำรวจและได้รับข้อมูลเพิ่มเติมเกี่ยวกับสถานการณ์น้ำท่วมในกรุงเทพฯ
-                        และแนวทางแก้ไข ขณะเดียวกัน หากผู้เล่นตอบถูกทั้งหมด
-                        พวกเขาจะได้รับรางวัล เช่น
-                        ข้อมูลเชิงลึกเพิ่มเติมเกี่ยวกับโครงการที่กำลังพัฒนาเพื่อป้องกันน้ำท่วมในอนาคต
-                      </p>
-                      <div className="flex justify-end">
-                        <button
-                          type="submit"
-                          className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.6vw] rounded-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
-                          onClick={() => {
-                            setStep("null");
-                            setTimeout(() => {
-                              setStep("name");
-                            }, 650);
-                          }}
-                        >
-                          ต่อไป
-                        </button>
-                      </div>
+                <img
+                  className="w-full h-full object-contain z-0"
+                  src="pic/rules.png"
+                  alt="Background"
+                  loading="lazy"
+                />
+                <div
+                  id="rules-content"
+                  className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0"
+                >
+                  <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-lg">
+                    <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold lg:mb-[0.4vw] mb-[0.6vw] py-[0.5vw] text-black">
+                      กติกา
+                    </h1>
+                    <p className="lg:mb-[0.8vw] mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-start">
+                      ผู้เล่นมีหัวใจอยู่ 3 ดวง หากตอบผิดจะโดนหักหัวใจ 1
+                      ดวงต่อครั้ง ซึ่งตอบผิดเกิน 3 ครั้ง (หัวใจหมด)
+                      ผู้เล่นจะเห็นจุดจบของการสำรวจและได้รับข้อมูลเพิ่มเติมเกี่ยวกับสถานการณ์น้ำท่วมในกรุงเทพฯ
+                      และแนวทางแก้ไข ขณะเดียวกัน หากผู้เล่นตอบถูกทั้งหมด
+                      พวกเขาจะได้รับรางวัล เช่น
+                      ข้อมูลเชิงลึกเพิ่มเติมเกี่ยวกับโครงการที่กำลังพัฒนาเพื่อป้องกันน้ำท่วมในอนาคต
+                    </p>
+                    <div className="flex justify-end">
+                      <button
+                        type="submit"
+                        className="lg:px-[1.2vw] lg:py-[0.4vw] px-[1.4vw] py-[0.6vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.6vw] rounded-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                        onClick={() => {
+                          setStep("null");
+                          setTimeout(() => {
+                            setStep("name");
+                          }, 650);
+                        }}
+                      >
+                        ต่อไป
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -432,41 +423,39 @@ const App = () => {
               unmountOnExit
             >
               <div className="relative w-full h-full">
-                {/* Common wrapper for image and content */}
-                <div className="fade-transition w-full h-full flex justify-center items-center">
-                  <img
-                    className="w-full h-full object-contain object-center 2xl:object-cover z-0"
-                    src="pic/name.png"
-                    alt="Background"
-                  />
-                  <div
-                    id="name-content"
-                    className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0"
-                  >
-                    <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-lg">
-                      <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold py-[0.25vw] lg:mb-[2.2vw] mb-[3.3vw] text-black">
-                        ใส่ชื่อนักเดินทาง
-                      </h1>
-                      <form
-                        onSubmit={handleNameSubmit}
-                        className="relative flex flex-col space-y-[0.6vw] mb-[0.6vw] px-[1vw]"
+                <img
+                  className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                  src="pic/name.png"
+                  alt="Background"
+                  loading="lazy"
+                />
+                <div
+                  id="name-content"
+                  className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0"
+                >
+                  <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-lg">
+                    <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold py-[0.25vw] lg:mb-[2.2vw] mb-[3.3vw] text-black">
+                      ใส่ชื่อนักเดินทาง
+                    </h1>
+                    <form
+                      onSubmit={handleNameSubmit}
+                      className="relative flex flex-col space-y-[0.6vw] mb-[0.6vw] px-[1vw]"
+                    >
+                      <input
+                        type="text"
+                        placeholder="ชื่อนักเดินทาง"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
+                        className="lg:p-[0.4vw] p-[0.6vw] border border-gray-300 outline-none lg:rounded-[0.6vw] rounded-[0.8vw] lg:mb-[0.8vw] mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                        required
+                      />
+                      <button
+                        type="submit"
+                        className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.6vw] rounded-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                       >
-                        <input
-                          type="text"
-                          placeholder="ชื่อนักเดินทาง"
-                          value={userName}
-                          onChange={(e) => setUserName(e.target.value)}
-                          className="lg:p-[0.4vw] p-[0.6vw] border border-gray-300 outline-none lg:rounded-[0.6vw] rounded-[0.8vw] lg:mb-[0.8vw] mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
-                          required
-                        />
-                        <button
-                          type="submit"
-                          className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] hover:bg-blue-600 text-white lg:rounded-[0.6vw] rounded-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
-                        >
-                          เริ่มต้นเดินทาง
-                        </button>
-                      </form>
-                    </div>
+                        เริ่มต้นเดินทาง
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -483,28 +472,23 @@ const App = () => {
                 onClick={handleContent}
                 disabled={contentDisabled}
               >
-                {/* Common wrapper for image and content */}
-                <div className="fade-transition w-full h-full flex justify-center items-center">
-                  <img
-                    className="w-full h-full object-contain object-center 2xl:object-cover z-0"
-                    src="pic/name.png"
-                    alt="Background"
-                  />
-                  <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
-                    <div
-                      className={`${fadeClass} xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold text-white opacity-0`}
-                    >
-                      {tabs[currentTab].content
-                        .split("\n")
-                        .map((line, index) => (
-                          <p
-                            key={index}
-                            style={{ textShadow: "0px 1px 30px #000" }}
-                          >
-                            {line}
-                          </p>
-                        ))}
-                    </div>
+                <img
+                  className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                  src="pic/name.png"
+                  alt="Background"
+                />
+                <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
+                  <div
+                    className={`${fadeClass} xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold text-white opacity-0`}
+                  >
+                    {tabs[currentTab].content.split("\n").map((line, index) => (
+                      <p
+                        key={index}
+                        style={{ textShadow: "0px 1px 30px #000" }}
+                      >
+                        {line}
+                      </p>
+                    ))}
                   </div>
                 </div>
               </button>
@@ -523,90 +507,87 @@ const App = () => {
                 unmountOnExit
               >
                 <div className="relative w-full h-full">
-                  {/* Common wrapper for image and content */}
-                  <div className="fade-transition w-full h-full flex justify-center items-center">
-                    <img
-                      className="w-full h-full object-contain object-center 2xl:object-cover z-0"
-                      src={`/question/q${index + 1}.png`}
-                      alt="Background"
-                    />
-                    <div className="fade-in absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center">
-                      <div className="lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
-                        <div className="flex justify-end space-x-[0.1vw] lg:mb-[0.45vw] mb-[0.625vw]">
-                          {Array.from({ length: 3 }, (_, i) => (
-                            <div key={i}>
-                              {i < hp ? (
-                                <Heart
-                                  fill="red"
-                                  color="red"
-                                  className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.75vw] h-[1.75vw] heart-animation opacity-75"
-                                  style={{
-                                    animation:
-                                      currentHeart === i
-                                        ? "moveHeart 0.6s ease-in-out"
-                                        : "none",
-                                  }}
-                                />
-                              ) : (
-                                <HeartCrack
-                                  color="#4f4f4f"
-                                  className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.75vw] h-[1.75vw] heart-animation opacity-75"
-                                  style={{
-                                    animation:
-                                      currentHeart === i
-                                        ? "moveHeart 0.6s ease-in-out"
-                                        : "none",
-                                  }}
-                                />
+                  <img
+                    className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                    src={`/question/q${index + 1}.png`}
+                    alt="Background"
+                  />
+                  <div className="fade-in absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center">
+                    <div className="lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
+                      <div className="flex justify-end space-x-[0.1vw] lg:mb-[0.45vw] mb-[0.625vw]">
+                        {Array.from({ length: 3 }, (_, i) => (
+                          <div key={i}>
+                            {i < hp ? (
+                              <Heart
+                                fill="red"
+                                color="red"
+                                className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.75vw] h-[1.75vw] heart-animation opacity-75"
+                                style={{
+                                  animation:
+                                    currentHeart === i
+                                      ? "moveHeart 0.6s ease-in-out"
+                                      : "none",
+                                }}
+                              />
+                            ) : (
+                              <HeartCrack
+                                color="#4f4f4f"
+                                className="lg:w-[1.25vw] lg:h-[1.25vw] w-[1.75vw] h-[1.75vw] heart-animation opacity-75"
+                                style={{
+                                  animation:
+                                    currentHeart === i
+                                      ? "moveHeart 0.6s ease-in-out"
+                                      : "none",
+                                }}
+                              />
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                      <p className="lg:mb-[1.6vw] mb-[2.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-start font-semibold text-black">
+                        <span className="mr-[0.2vw]">{index + 1}.</span>
+                        {questions[index].question.replaceAll(
+                          "(ชื่อผู้เล่น)",
+                          userName.trim()
+                        )}
+                      </p>
+                      <div className="lg:mb-[0.6vw] mb-[0.9vw]">
+                        {shuffledChoices.map((choice, index) => (
+                          <button
+                            key={index}
+                            disabled={choiceDisabled}
+                            className={`w-full flex justify-between items-center shadow-md lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.6vw] rounded-[0.8vw] border-2 bg-opacity-75 ${
+                              selectedAnswerIndex === index
+                                ? feedback === "correct"
+                                  ? "bg-[#a1f3be] border-green-300"
+                                  : "bg-[#fdb8b8] border-red-300"
+                                : "bg-gray-200 border-gray-300"
+                            }`}
+                            onClick={() => handleAnswerSelect(choice, index)}
+                          >
+                            <div className="text-left xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]">
+                              {choice.replaceAll(
+                                "(ชื่อผู้เล่น)",
+                                userName.trim()
                               )}
                             </div>
-                          ))}
-                        </div>
-                        <p className="lg:mb-[1.6vw] mb-[2.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw] text-start font-semibold text-black">
-                          <span className="mr-[0.2vw]">{index + 1}.</span>
-                          {questions[index].question.replaceAll(
-                            "(ชื่อผู้เล่น)",
-                            userName.trim()
-                          )}
-                        </p>
-                        <div className="lg:mb-[0.6vw] mb-[0.9vw]">
-                          {shuffledChoices.map((choice, index) => (
-                            <button
-                              key={index}
-                              disabled={choiceDisabled}
-                              className={`w-full flex justify-between items-center shadow-md lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.6vw] rounded-[0.8vw] border-2 bg-opacity-75 ${
-                                selectedAnswerIndex === index
-                                  ? feedback === "correct"
-                                    ? "bg-[#a1f3be] border-green-300"
-                                    : "bg-[#fdb8b8] border-red-300"
-                                  : "bg-gray-200 border-gray-300"
-                              }`}
-                              onClick={() => handleAnswerSelect(choice, index)}
-                            >
-                              <div className="text-left xl:text-[0.95vw] lg:text-[1.15vw] md:text-[1.35vw] text-[1.55vw]">
-                                {choice.replaceAll(
-                                  "(ชื่อผู้เล่น)",
-                                  userName.trim()
+                            {selectedAnswerIndex === index && feedback && (
+                              <div className="items-end lg:ml-[0.35vw] ml-[0.525vw]">
+                                {feedback === "correct" ? (
+                                  <Check
+                                    strokeWidth={3.5}
+                                    className="text-green-500 lg:w-[1.30vw] lg:h-[1.30vw] w-[1.80vw] h-[1.80vw]"
+                                  />
+                                ) : (
+                                  <X
+                                    strokeWidth={3.5}
+                                    className="text-red-500 lg:w-[1.30vw] lg:h-[1.30vw] w-[1.80vw] h-[1.80vw]"
+                                  />
                                 )}
                               </div>
-                              {selectedAnswerIndex === index && feedback && (
-                                <div className="items-end lg:ml-[0.35vw] ml-[0.525vw]">
-                                  {feedback === "correct" ? (
-                                    <Check
-                                      strokeWidth={3.5}
-                                      className="text-green-500 lg:w-[1.30vw] lg:h-[1.30vw] w-[1.80vw] h-[1.80vw]"
-                                    />
-                                  ) : (
-                                    <X
-                                      strokeWidth={3.5}
-                                      className="text-red-500 lg:w-[1.30vw] lg:h-[1.30vw] w-[1.80vw] h-[1.80vw]"
-                                    />
-                                  )}
-                                </div>
-                              )}
-                            </button>
-                          ))}
-                        </div>
+                            )}
+                          </button>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -621,56 +602,52 @@ const App = () => {
               unmountOnExit
             >
               <div className="relative w-full h-full">
-                {/* Common wrapper for image and content */}
-                <div className="fade-transition w-full h-full flex justify-center items-center">
-                  <img
-                    className="w-full h-full object-contain object-center 2xl:object-cover z-0"
-                    src={`/summary/${summary}.png`}
-                    alt="Background"
-                  />
-                  <div className="fade-in absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center">
-                    <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
-                      <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
-                        เย้! ยินดีด้วยย
-                      </h1>
-                      <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
-                        คุณ {userName} ได้ผ่านบททดสอบและได้คะแนน {point} เต็ม{" "}
-                        {max}
-                      </p>
-                      <p className="text-start mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
-                        <span className="font-bold">สรุป: </span>{" "}
-                        {summaryText[0]}
-                      </p>
-                      <p className="text-start mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
-                        <span className="font-bold">คำแนะนำ: </span>{" "}
-                        {summaryText[1]}
-                      </p>
-                      <p className="mt-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
-                        ขอบคุณที่เข้ามาเล่นน้าา คุณ {userName}!
-                      </p>
-                      <button
-                        className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] text-white lg:rounded-[0.6vw] rounded-[0.8vw] mt-[1.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
-                        onClick={() => {
-                          setStep("null");
-                          setTimeout(() => {
-                            setStep("home");
-                            setCurrentQuestionIndex(0);
-                            setUserName("");
-                            setHp(3);
-                            setSelectedAnswerIndex(null);
-                            setChoiceDisabled(false);
-                            setFeedback(null);
-                            setContentDisabled(false);
-                            setCurrentHeart(0);
-                            setCurrentTab(0);
-                            setPoint(0);
-                            setFadeClass("fade-in");
-                          }, 650);
-                        }}
-                      >
-                        ลองใหม่อีกครั้ง
-                      </button>
-                    </div>
+                <img
+                  className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                  src={`/summary/${summary}.png`}
+                  alt="Background"
+                />
+                <div className="fade-in absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center">
+                  <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
+                    <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
+                      เย้! ยินดีด้วยย
+                    </h1>
+                    <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
+                      คุณ {userName} ได้ผ่านบททดสอบและได้คะแนน {point} เต็ม{" "}
+                      {max}
+                    </p>
+                    <p className="text-start mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
+                      <span className="font-bold">สรุป: </span> {summaryText[0]}
+                    </p>
+                    <p className="text-start mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
+                      <span className="font-bold">คำแนะนำ: </span>{" "}
+                      {summaryText[1]}
+                    </p>
+                    <p className="mt-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
+                      ขอบคุณที่เข้ามาเล่นน้าา คุณ {userName}!
+                    </p>
+                    <button
+                      className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] text-white lg:rounded-[0.6vw] rounded-[0.8vw] mt-[1.4vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                      onClick={() => {
+                        setStep("null");
+                        setTimeout(() => {
+                          setStep("home");
+                          setCurrentQuestionIndex(0);
+                          setUserName("");
+                          setHp(3);
+                          setSelectedAnswerIndex(null);
+                          setChoiceDisabled(false);
+                          setFeedback(null);
+                          setContentDisabled(false);
+                          setCurrentHeart(0);
+                          setCurrentTab(0);
+                          setPoint(0);
+                          setFadeClass("fade-in");
+                        }, 650);
+                      }}
+                    >
+                      ลองใหม่อีกครั้ง
+                    </button>
                   </div>
                 </div>
               </div>
@@ -683,47 +660,44 @@ const App = () => {
               unmountOnExit
             >
               <div className="relative w-full h-full">
-                {/* Common wrapper for image and content */}
-                <div className="fade-transition w-full h-full flex justify-center items-center">
-                  <img
-                    className="w-full h-full object-contain object-center 2xl:object-cover z-0"
-                    src={`/summary/sad.png`}
-                    alt="Background"
-                  />
-                  <div className="fade-in absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center">
-                    <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
-                      <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
-                        เสียใจด้วยย!
-                      </h1>
-                      <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
-                        คุณได้ตอบผิดครบ 3 ครั้งแล้วว T^T
-                      </p>
-                      <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
-                        ขอบคุณที่เข้ามาเล่นน้าา คุณ {userName}!
-                      </p>
-                      <button
-                        className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] text-white lg:rounded-[0.6vw] rounded-[0.8vw] mt-[1.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
-                        onClick={() => {
-                          setStep("null");
-                          setTimeout(() => {
-                            setStep("home");
-                            setCurrentQuestionIndex(0);
-                            setUserName("");
-                            setHp(3);
-                            setSelectedAnswerIndex(null);
-                            setChoiceDisabled(false);
-                            setFeedback(null);
-                            setContentDisabled(false);
-                            setCurrentHeart(0);
-                            setCurrentTab(0);
-                            setPoint(0);
-                            setFadeClass("fade-in");
-                          }, 650);
-                        }}
-                      >
-                        ลองใหม่อีกครั้ง
-                      </button>
-                    </div>
+                <img
+                  className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                  src={`/summary/sad.png`}
+                  alt="Background"
+                />
+                <div className="fade-in absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center">
+                  <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
+                    <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
+                      เสียใจด้วยย!
+                    </h1>
+                    <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
+                      คุณได้ตอบผิดครบ 3 ครั้งแล้วว T^T
+                    </p>
+                    <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
+                      ขอบคุณที่เข้ามาเล่นน้าา คุณ {userName}!
+                    </p>
+                    <button
+                      className="lg:px-[1.2vw] lg:py-[0.45vw] px-[1.4vw] py-[0.65vw] shadow-lg bg-gradient-to-tr from-[#58c2ff] to-[#3d45cb] text-white lg:rounded-[0.6vw] rounded-[0.8vw] mt-[1.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                      onClick={() => {
+                        setStep("null");
+                        setTimeout(() => {
+                          setStep("home");
+                          setCurrentQuestionIndex(0);
+                          setUserName("");
+                          setHp(3);
+                          setSelectedAnswerIndex(null);
+                          setChoiceDisabled(false);
+                          setFeedback(null);
+                          setContentDisabled(false);
+                          setCurrentHeart(0);
+                          setCurrentTab(0);
+                          setPoint(0);
+                          setFadeClass("fade-in");
+                        }, 650);
+                      }}
+                    >
+                      ลองใหม่อีกครั้ง
+                    </button>
                   </div>
                 </div>
               </div>
