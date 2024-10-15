@@ -345,7 +345,6 @@ const App = () => {
                   src="pic/home.png"
                   alt="Background"
                 />
-                <link className="w-full h-full object-contain z-0" rel="preload" href="pic/home.png" as="image"/>
 
                 {/* Overlay content */}
                 <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
