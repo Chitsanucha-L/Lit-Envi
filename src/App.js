@@ -352,9 +352,9 @@ const App = () => {
                   className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
-                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <VolumeOff className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   ) : (
-                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <Volume2 className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   )}
                 </button>
                 {/* Overlay content */}
@@ -395,9 +395,9 @@ const App = () => {
                   className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[3.5vw] right-[3.5vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
-                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <VolumeOff className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   ) : (
-                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <Volume2 className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   )}
                 </button>
                 <img
@@ -452,9 +452,9 @@ const App = () => {
                   className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white lg:p-[0.55vw] p-[1vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
-                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2.25vw] h-[2.25vw]" />
+                    <VolumeOff className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   ) : (
-                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2.25vw] h-[2.25vw]" />
+                    <Volume2 className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   )}
                 </button>
                 <img
@@ -510,9 +510,9 @@ const App = () => {
                   className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
-                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <VolumeOff className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   ) : (
-                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <Volume2 className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   )}
                 </button>
                 <img
@@ -555,9 +555,9 @@ const App = () => {
                     className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                   >
                     {isMuted ? (
-                      <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                      <VolumeOff className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                     ) : (
-                      <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                      <Volume2 className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                     )}
                   </button>
                   <img
@@ -660,9 +660,9 @@ const App = () => {
                   className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
-                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <VolumeOff className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   ) : (
-                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <Volume2 className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   )}
                 </button>
                 <img
@@ -728,9 +728,9 @@ const App = () => {
                   className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
-                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <VolumeOff className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   ) : (
-                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <Volume2 className="lg:w-[1.55vw] lg:h-[1.55vw] w-[2.325vw] h-[2.325vw]" />
                   )}
                 </button>
                 <img
