@@ -449,12 +449,12 @@ const App = () => {
               <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
                 <button
                   onClick={() => setIsMuted((prevState) => !prevState)}
-                  className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                  className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white lg:p-[0.55vw] p-[0.825vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
-                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2.25vw] h-[2.25vw]" />
                   ) : (
-                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2.25vw] h-[2.25vw]" />
                   )}
                 </button>
                 <img
@@ -479,7 +479,7 @@ const App = () => {
                         placeholder="ชื่อนักเดินทาง"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
-                        className="lg:p-[0.4vw] p-[0.6vw] border border-gray-300 outline-none lg:rounded-[0.6vw] rounded-[0.8vw] lg:mb-[0.8vw] mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
+                        className="lg:p-[0.4vw] p-[0.55vw] border border-gray-300 outline-none lg:rounded-[0.6vw] rounded-[0.8vw] lg:mb-[0.8vw] mb-[1.2vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]"
                         required
                       />
                       <button
