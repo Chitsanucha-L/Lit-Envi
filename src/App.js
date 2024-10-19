@@ -51,7 +51,7 @@ const App = () => {
 
   const playAudio = async () => {
     try {
-      audioRef.current.volume = 0.20;
+      audioRef.current.volume = 0.15;
       await audioRef.current.play();
     } catch (error) {
       console.error("Audio playback failed", error);
@@ -153,7 +153,7 @@ const App = () => {
     if (correctAnswers.includes(choice)) {
       console.log("Correct!");
       const correctSound = document.getElementById("correct");
-      correctSound.volume = 0.80;
+      correctSound.volume = 1;
       correctSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
@@ -164,7 +164,7 @@ const App = () => {
     } else {
       console.log("Incorrect!");
       const wrongSound = document.getElementById("wrong");
-      wrongSound.volume = 0.85;
+      wrongSound.volume = 1;
       wrongSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
