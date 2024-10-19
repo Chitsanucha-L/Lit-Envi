@@ -349,7 +349,7 @@ const App = () => {
                 />
                 <button
                   onClick={() => setIsMuted((prevState) => !prevState)}
-                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                  className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
                     <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
@@ -392,7 +392,7 @@ const App = () => {
               <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
                 <button
                   onClick={() => setIsMuted((prevState) => !prevState)}
-                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                  className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[3.5vw] right-[3.5vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
                     <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
@@ -449,7 +449,7 @@ const App = () => {
               <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
                 <button
                   onClick={() => setIsMuted((prevState) => !prevState)}
-                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                  className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
                     <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
@@ -507,7 +507,7 @@ const App = () => {
               >
                 <button
                   onClick={() => setIsMuted((prevState) => !prevState)}
-                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                  className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
                     <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
@@ -552,7 +552,7 @@ const App = () => {
                 <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
                   <button
                     onClick={() => setIsMuted((prevState) => !prevState)}
-                    className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                    className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                   >
                     {isMuted ? (
                       <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
@@ -657,7 +657,7 @@ const App = () => {
               <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
                 <button
                   onClick={() => setIsMuted((prevState) => !prevState)}
-                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                  className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
                     <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
@@ -725,7 +725,7 @@ const App = () => {
               <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
                 <button
                   onClick={() => setIsMuted((prevState) => !prevState)}
-                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                  className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
                     <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
