@@ -153,7 +153,7 @@ const App = () => {
     if (correctAnswers.includes(choice)) {
       console.log("Correct!");
       const correctSound = document.getElementById("correct");
-      correctSound.volume = 1;
+      correctSound.volume = 0.70;
       correctSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
@@ -164,7 +164,7 @@ const App = () => {
     } else {
       console.log("Incorrect!");
       const wrongSound = document.getElementById("wrong");
-      wrongSound.volume = 0.60;
+      wrongSound.volume = 0.80;
       wrongSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
