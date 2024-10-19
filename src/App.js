@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import questions from "./data"; // Importing questions from the data file
 import { Heart, HeartCrack, Check, X, VolumeOff, Volume2 } from "lucide-react";
 import { CSSTransition } from "react-transition-group";
@@ -22,7 +22,6 @@ const App = () => {
   const max = questions.length;
   const [summary, setSummary] = useState(null);
   const [summaryText, setSummaryText] = useState("");
-  const audioRef = useRef(null);
   const [isMuted, setIsMuted] = useState(false);
   const [currentHeart, setCurrentHeart] = useState(0);
   const [currentTab, setCurrentTab] = useState(0);
@@ -51,8 +50,9 @@ const App = () => {
 
   const playAudio = async () => {
     try {
-      audioRef.current.volume = 0.15;
-      await audioRef.current.play();
+      const backgroundSound = document.getElementById("background");
+      backgroundSound.volume = 0.15;
+      await backgroundSound.play();
     } catch (error) {
       console.error("Audio playback failed", error);
     }
@@ -65,8 +65,8 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if ((step === "home" || step === "rules") && audioRef) playAudio();
-  }, [step, audioRef]);
+    if ((step === "home" || step === "rules")) playAudio();
+  }, [step]);
 
   // Image preloading
   const preloadImage = (src) => {
@@ -153,7 +153,7 @@ const App = () => {
     if (correctAnswers.includes(choice)) {
       console.log("Correct!");
       const correctSound = document.getElementById("correct");
-      correctSound.volume = 1;
+      correctSound.volume = 0.8;
       correctSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
@@ -164,7 +164,7 @@ const App = () => {
     } else {
       console.log("Incorrect!");
       const wrongSound = document.getElementById("wrong");
-      wrongSound.volume = 1;
+      wrongSound.volume = 0.8;
       wrongSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
@@ -329,7 +329,7 @@ const App = () => {
       <audio id="wrong" src="/wrong.mp3" preload="auto"></audio>
       {isImageLoaded && (
         <>
-          <audio id="audio" loop autoPlay ref={audioRef} muted={isMuted}>
+          <audio id="background" loop autoPlay muted={isMuted}>
             <source src="/music.mp3" type="audio/mp3" />
           </audio>
 
