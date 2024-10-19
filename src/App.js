@@ -609,7 +609,7 @@ const App = () => {
                           <button
                             key={index}
                             disabled={choiceDisabled}
-                            className={`w-full flex justify-between items-center shadow-md lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.6vw] rounded-[0.8vw] border-2 bg-opacity-75 ${
+                            className={`w-full flex justify-between items-center shadow-md lg:p-[0.6vw] p-[0.9vw] lg:my-[0.85vw] my-[1.275vw] lg:rounded-[0.6vw] rounded-[0.8vw] lg:border-2 border-1 bg-opacity-75 ${
                               selectedAnswerIndex === index
                                 ? feedback === "correct"
                                   ? "bg-[#a1f3be] border-green-300"
