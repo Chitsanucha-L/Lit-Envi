@@ -449,7 +449,7 @@ const App = () => {
               <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
                 <button
                   onClick={() => setIsMuted((prevState) => !prevState)}
-                  className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white lg:p-[0.55vw] p-[0.825vw] shadow-lg rounded-full"
+                  className="absolute z-20 lg:top-[2vw] lg:right-[2vw] top-[4vw] right-[4vw] bg-gray-800 text-white lg:p-[0.55vw] p-[1vw] shadow-lg rounded-full"
                 >
                   {isMuted ? (
                     <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2.25vw] h-[2.25vw]" />
