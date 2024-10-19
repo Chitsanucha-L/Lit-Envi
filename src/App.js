@@ -164,7 +164,7 @@ const App = () => {
     } else {
       console.log("Incorrect!");
       const wrongSound = document.getElementById("wrong");
-      wrongSound.volume = 0.75;
+      wrongSound.volume = 0.70;
       wrongSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
