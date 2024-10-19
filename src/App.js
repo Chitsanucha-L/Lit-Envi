@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import questions from "./data"; // Importing questions from the data file
-import { Heart, HeartCrack, Check, X } from "lucide-react";
+import { Heart, HeartCrack, Check, X, VolumeOff, Volume2 } from "lucide-react";
 import { CSSTransition } from "react-transition-group";
 import "./App.css";
 import axios from "axios";
@@ -23,6 +23,7 @@ const App = () => {
   const [summary, setSummary] = useState(null);
   const [summaryText, setSummaryText] = useState("");
   const audioRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(false);
   const [currentHeart, setCurrentHeart] = useState(0);
   const [currentTab, setCurrentTab] = useState(0);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -50,7 +51,7 @@ const App = () => {
 
   const playAudio = async () => {
     try {
-      audioRef.current.volume = 0.3;
+      audioRef.current.volume = 0.20;
       await audioRef.current.play();
     } catch (error) {
       console.error("Audio playback failed", error);
@@ -163,7 +164,7 @@ const App = () => {
     } else {
       console.log("Incorrect!");
       const wrongSound = document.getElementById("wrong");
-      wrongSound.volume = 0.85;
+      wrongSound.volume = 0.60;
       wrongSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
@@ -172,7 +173,7 @@ const App = () => {
         hpNum = hpNum - 1;
         setHp(hpNum);
       } else {
-        hpNum = 0
+        hpNum = 0;
         setHp(hpNum);
         setStep("null");
         setTimeout(() => {
@@ -328,9 +329,10 @@ const App = () => {
       <audio id="wrong" src="/wrong.mp3" preload="auto"></audio>
       {isImageLoaded && (
         <>
-          <audio id="audio" loop autoPlay ref={audioRef}>
+          <audio id="audio" loop autoPlay ref={audioRef} muted={isMuted}>
             <source src="/music.mp3" type="audio/mp3" />
           </audio>
+
           <div className="flex justify-center items-center w-full min-h-screen h-full">
             <CSSTransition
               in={step === "home"}
@@ -339,15 +341,24 @@ const App = () => {
               mountOnEnter
               unmountOnExit
             >
-              <div className="relative w-full h-full">
+              <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
                 <img
-                  className="w-full h-full object-contain z-0"
+                  className="w-screen h-auto z-0 opacity-75"
                   src="pic/home.png"
                   alt="Background"
                 />
-
+                <button
+                  onClick={() => setIsMuted((prevState) => !prevState)}
+                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                >
+                  {isMuted ? (
+                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  ) : (
+                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  )}
+                </button>
                 {/* Overlay content */}
-                <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
+                <div className="absolute inset-0 flex flex-col justify-center items-center z-10">
                   <h1
                     id="home-title"
                     className="xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold lg:mb-[3.5vw] mb-[5vw] py-[0.4vw] text-white"
@@ -378,17 +389,27 @@ const App = () => {
               mountOnEnter
               unmountOnExit
             >
-              <div className="relative w-full h-full">
+              <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
+                <button
+                  onClick={() => setIsMuted((prevState) => !prevState)}
+                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                >
+                  {isMuted ? (
+                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  ) : (
+                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  )}
+                </button>
                 <img
-                  className="w-full h-full object-contain z-0"
+                  className="w-screen h-auto z-0"
                   src="pic/rules.png"
                   alt="Background"
                 />
                 <div
                   id="rules-content"
-                  className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0"
+                  className="absolute inset-0 z-10 flex flex-col justify-center items-center opacity-0"
                 >
-                  <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-lg">
+                  <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
                     <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold lg:mb-[0.4vw] mb-[0.6vw] py-[0.5vw] text-black">
                       กติกา
                     </h1>
@@ -425,17 +446,27 @@ const App = () => {
               mountOnEnter
               unmountOnExit
             >
-              <div className="relative w-full h-full">
+              <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
+                <button
+                  onClick={() => setIsMuted((prevState) => !prevState)}
+                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                >
+                  {isMuted ? (
+                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  ) : (
+                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  )}
+                </button>
                 <img
-                  className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                  className="w-screen h-auto z-0"
                   src="pic/name.png"
                   alt="Background"
                 />
                 <div
                   id="name-content"
-                  className="absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center opacity-0"
+                  className="absolute inset-0 z-10 flex flex-col justify-center items-center opacity-0"
                 >
-                  <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-lg">
+                  <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
                     <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold py-[0.25vw] lg:mb-[2.2vw] mb-[3.3vw] text-black">
                       ใส่ชื่อนักเดินทาง
                     </h1>
@@ -470,16 +501,26 @@ const App = () => {
               unmountOnExit
             >
               <button
-                className="relative w-full h-full"
+                className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center"
                 onClick={handleContent}
                 disabled={contentDisabled}
               >
+                <button
+                  onClick={() => setIsMuted((prevState) => !prevState)}
+                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                >
+                  {isMuted ? (
+                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  ) : (
+                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  )}
+                </button>
                 <img
-                  className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                  className="w-screen h-auto z-0 opacity-75"
                   src="pic/name.png"
                   alt="Background"
                 />
-                <div className="absolute inset-0 flex flex-col justify-center items-center z-10 bg-black bg-opacity-25">
+                <div className="absolute inset-0 flex flex-col justify-center items-center z-10">
                   <div
                     className={`${fadeClass} xl:text-[1.8vw] lg:text-[2vw] md:text-[2.2vw] text-[2.4vw] font-bold text-white opacity-0`}
                   >
@@ -508,13 +549,23 @@ const App = () => {
                 mountOnEnter
                 unmountOnExit
               >
-                <div className="relative w-full h-full">
+                <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
+                  <button
+                    onClick={() => setIsMuted((prevState) => !prevState)}
+                    className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                  >
+                    {isMuted ? (
+                      <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    ) : (
+                      <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                    )}
+                  </button>
                   <img
-                    className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                    className="w-screen h-auto z-0"
                     src={`/question/q${index + 1}.png`}
                     alt="Background"
                   />
-                  <div className="fade-in absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center">
+                  <div className="fade-in absolute inset-0 z-10 flex flex-col justify-center items-center">
                     <div className="lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
                       <div className="flex justify-end space-x-[0.1vw] lg:mb-[0.45vw] mb-[0.625vw]">
                         {Array.from({ length: 3 }, (_, i) => (
@@ -603,13 +654,23 @@ const App = () => {
               mountOnEnter
               unmountOnExit
             >
-              <div className="relative w-full h-full">
+              <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
+                <button
+                  onClick={() => setIsMuted((prevState) => !prevState)}
+                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                >
+                  {isMuted ? (
+                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  ) : (
+                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  )}
+                </button>
                 <img
-                  className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                  className="w-screen h-auto z-0"
                   src={`/summary/${summary}.png`}
                   alt="Background"
                 />
-                <div className="fade-in absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center">
+                <div className="fade-in absolute inset-0 z-10 flex flex-col justify-center items-center">
                   <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
                     <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
                       เย้! ยินดีด้วยย
@@ -661,13 +722,23 @@ const App = () => {
               mountOnEnter
               unmountOnExit
             >
-              <div className="relative w-full h-full">
+              <div className="relative overflow-auto max-w-screen max-h-screen flex justify-center items-center">
+                <button
+                  onClick={() => setIsMuted((prevState) => !prevState)}
+                  className="absolute z-20 top-[2vw] right-[2vw] bg-gray-800 text-white p-[0.55vw] shadow-lg rounded-full"
+                >
+                  {isMuted ? (
+                    <VolumeOff className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  ) : (
+                    <Volume2 className="lg:w-[1.5vw] lg:h-[1.5vw] w-[2vw] h-[2vw]" />
+                  )}
+                </button>
                 <img
-                  className="w-full h-full object-contain object-center 2xl:object-cover z-0"
+                  className="w-screen h-auto z-0"
                   src={`/summary/sad.png`}
                   alt="Background"
                 />
-                <div className="fade-in absolute inset-0 z-10 shadow-xl flex flex-col justify-center items-center">
+                <div className="fade-in absolute inset-0 z-10 flex flex-col justify-center items-center">
                   <div className="text-center lg:p-[1.4vw] p-[1.6vw] xl:max-w-[35vw] lg:max-w-[40vw] md:max-w-[45vw] max-w-[50vw] w-full bg-white bg-opacity-75 lg:rounded-[0.6vw] rounded-[0.8vw] shadow-xl">
                     <h1 className="xl:text-[1.6vw] lg:text-[1.8vw] md:text-[2vw] text-[2.2vw] font-bold mb-[1.2vw]">
                       เสียใจด้วยย!
