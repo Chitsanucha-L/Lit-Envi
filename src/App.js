@@ -65,7 +65,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if ((step === "home" || step === "rules")) playAudio();
+    if (step === "home" || step === "rules") playAudio();
   }, [step]);
 
   // Image preloading
@@ -164,7 +164,7 @@ const App = () => {
     } else {
       console.log("Incorrect!");
       const wrongSound = document.getElementById("wrong");
-      wrongSound.volume = 0.70;
+      wrongSound.volume = 0.7;
       wrongSound.play().catch((error) => {
         console.error("Error playing sound", error);
       });
@@ -194,13 +194,7 @@ const App = () => {
         }, 650);
       }, 2000);
     } else if (hpNum > 0) {
-      if (point <= 3) {
-        setSummary("sad");
-        setSummaryText([
-          "คุณยังขาดความเข้าใจพื้นฐานเกี่ยวกับนิเวศสำนึกและการจัดการปัญหาน้ำท่วม ความไม่ตระหนักถึงการรักษาสิ่งแวดล้อมและการแก้ไขปัญหาที่เกิดจากการเปลี่ยนแปลงสภาพแวดล้อมอาจส่งผลให้สถานการณ์แย่ลง",
-          "ควรเริ่มศึกษาเกี่ยวกับการอนุรักษ์ธรรมชาติ และการแก้ปัญหาน้ำท่วม เช่น การลดขยะ การป้องกันการอุดตันของท่อระบายน้ำ และฟื้นฟูพื้นที่สีเขียว",
-        ]);
-      } else if (point <= 8) {
+      if (point <= 8) {
         setSummary("normal");
         setSummaryText([
           "คุณมีความเข้าใจในเรื่องนิเวศและการจัดการปัญหาน้ำท่วมอยู่ในระดับที่น่าพอใจ คุณเริ่มต้นได้ดีในการใช้วัสดุที่เป็นมิตรต่อสิ่งแวดล้อมและสนับสนุนการปลูกต้นไม้เพื่อช่วยลดผลกระทบจากน้ำท่วม",
@@ -745,6 +739,18 @@ const App = () => {
                     </h1>
                     <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
                       คุณได้ตอบผิดครบ 3 ครั้งแล้วว T^T
+                    </p>
+                    <p className="text-start mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
+                      <span className="font-bold">สรุป: </span>{" "}
+                      {
+                        "คุณยังขาดความเข้าใจพื้นฐานเกี่ยวกับนิเวศสำนึกและการจัดการปัญหาน้ำท่วม ความไม่ตระหนักถึงการรักษาสิ่งแวดล้อมและการแก้ไขปัญหาที่เกิดจากการเปลี่ยนแปลงสภาพแวดล้อมอาจส่งผลให้สถานการณ์แย่ลง"
+                      }
+                    </p>
+                    <p className="text-start mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
+                      <span className="font-bold">คำแนะนำ: </span>{" "}
+                      {
+                        "ควรเริ่มศึกษาเกี่ยวกับการอนุรักษ์ธรรมชาติ และการแก้ปัญหาน้ำท่วม เช่น การลดขยะ การป้องกันการอุดตันของท่อระบายน้ำ และฟื้นฟูพื้นที่สีเขียว"
+                      }
                     </p>
                     <p className="mt-[0.8vw] xl:text-[1vw] lg:text-[1.2vw] md:text-[1.4vw] text-[1.6vw]">
                       ขอบคุณที่เข้ามาเล่นน้าา คุณ {userName}!
